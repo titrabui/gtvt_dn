@@ -289,6 +289,7 @@ return array(
 			'admin',
 			'moderator',
 			'user',
+			'api',
 		),
 
 		/**

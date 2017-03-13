@@ -5,6 +5,7 @@ return array(
 	'manager'   => 'admin/index/index',
 	'moderator' => 'moderator/index/index',
 	'user'      => 'user/index/index',
+	'api'       => 'api/index/index',
 	
 	/* 'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'), */
 );
