@@ -287,8 +287,8 @@ return array(
 		 */
 		'modules'  => array(
 			'admin',
-			'moderator',
-			'user',
+			//'moderator',
+			//'user',
 			'api',
 		),
 

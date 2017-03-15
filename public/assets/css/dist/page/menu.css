@@ -1,0 +1,11 @@
+.pd-top{ padding-top: 10px; }
+.mg-bottom { margin-bottom: 15px; }
+/*.skin-blue .main-header .logo { background-color: #3c8dbc; }*/
+
+.tbl-header { background-color: #f5f5f5 }
+
+.margin-bottom-40 { margin-bottom: 40px; }
+
+.vertical-line {
+    border-left: thick solid #ff0000;
+}

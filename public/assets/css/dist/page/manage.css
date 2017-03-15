@@ -1,0 +1,28 @@
+.conversion-manage .table { border: 0px solid #2980B9; }
+.conversion-manage .table thead > tr > th { border-bottom: none; background-color: #2180B7; color: white; text-align: center; font-size: 15px; font-weight: 100;}
+.conversion-manage .table thead > tr > th, 
+.conversion-manage .table tbody > tr > th, 
+.conversion-manage .table tfoot > tr > th, 
+.conversion-manage .table thead > tr > td, 
+.conversion-manage .table tbody > tr > td, 
+.conversion-manage .table tfoot > tr > td { border: 1px solid #2980B9 !important; border-bottom: 0px !important;}
+.conversion-manage .table tbody > tr:last-child > td { border-bottom: 1px solid #2980B9 !important; }
+.conversion-manage .table tbody > tr > td{background-color: white;}
+.conversion-manage .table .btn-default{margin-bottom: 5px;}
+.conversion-manage .table .btn-delete, 
+.conversion-manage .table .btn-detail{width: 35%;}
+.conversion-manage .table .btn-setting{width: 70%;}
+.conversion-manage .table .btn-border{border: 1px solid #2180B7;}
+
+.tbl-header {
+    background-color: #2180B7;
+    color: white;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #eff0f1 !important;
+}
+
+.table .no { width: 45px; text-align: center; }
+.table .num-route { width: 85px; text-align: center; }
+.table .edit-route { width: 180px; text-align: center;}
