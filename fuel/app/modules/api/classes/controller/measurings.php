@@ -34,6 +34,34 @@ class Controller_Measurings extends \Controller_Rest
 			), 403);
 		}
 
+		if (\Input::method() == 'POST')
+		{
+			$val = \Model_Milestone::validate('register');
 
+			if ($val->run())
+			{
+				if ( ! $pagetitle = $this->get_page_title(\Input::post('url')))
+				{
+					\Session::set_flash('error','このURLが存在しない');
+				}
+				else
+				{
+					$milestone = \Model_Milestone::forge(array(
+						'published'   => \Input::post('published'),
+						'title'	      => \Input::post('title'),
+						'description' => \Input::post('description'),
+						'url'         => \Input::post('url'),
+						'pagetitle'   => strpos($pagetitle, '\'') ? str_replace('\'', '', $pagetitle) : $pagetitle, // remove character ";" in pagetitle
+					));
+
+					\Session::set('milestone', $milestone);
+					\Response::redirect('manager/milestones/confirm');
+				}
+			}
+			else
+			{
+				\Session::set_flash('error', $val->error());
+			}
+		}
 	}
 }

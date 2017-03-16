@@ -27,19 +27,19 @@
 <body class="hold-transition login-page">
 <div class="login-box">
 	<div class="login-logo">
-	<a href="<?php Uri::create('/') ?>"><b>Admin</b>LTE</a>
+	<a href="<?php echo Uri::create('/') ?>"><b>Admin</b>LTE</a>
 	</div>
 	<!-- /.login-logo -->
 	<div class="login-box-body">
 	<p class="login-box-msg">ĐĂNG NHẬP HỆ THỐNG</p>
 
-	<form action="/login" method="post">
+	<form action="<?php echo \Uri::create('/login'); ?>" method="post">
 		<div class="form-group has-feedback">
-			<input type="text" class="form-control" placeholder="Tài khoản">
+			<input type="text" name="username" class="form-control" placeholder="Tài khoản">
 			<span class="glyphicon glyphicon-user form-control-feedback"></span>
 		</div>
 		<div class="form-group has-feedback">
-			<input type="password" class="form-control" placeholder="Mật khẩu">
+			<input type="password" name="password" class="form-control" placeholder="Mật khẩu">
 			<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 		</div>
 		<div class="row">

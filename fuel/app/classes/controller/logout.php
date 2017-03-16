@@ -1,7 +1,16 @@
 <?php
 class Controller_Logout extends Controller
 {
-		/**
+    /**
+     * Preprocessing
+     */
+    public function before() {
+        // Set fields handled in input form as array
+        parent::before();
+
+    }
+    
+	/**
 	 * The logout function
 	 *
 	 * @access  public

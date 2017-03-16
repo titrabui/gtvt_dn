@@ -16,10 +16,17 @@ class Controller_Index extends Controller_Base
 	 *
 	 * @throws Exception
 	 */
-	public function action_index() {
+	public function action_index()
+	{
+		if (Auth::check())
+		{
+			Auth::member(\Constants::$user_group['Administrators']) and \Response::redirect('admin/projects');
+			Auth::member(\Constants::$user_group['Moderators']) and \Response::redirect('moderator/projects');
+			Auth::member(\Constants::$user_group['Users']) and \Response::redirect('user/projects');
 
-		\Response::redirect('user/dashboard/index');
+			\Auth::logout();
+		}
 
+		Response::redirect('login');
 	}
-
 }

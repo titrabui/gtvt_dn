@@ -1,17 +1,19 @@
 <?php
 
-class Controller_Base extends Controller_Hybrid
+class Controller_Base extends \Fuel\Core\Controller_Template
 {
 	// Template name
-	public $template = 'template';
 	public $referrer;
+	public $modules;
+	public $controller;
+	public $action;
 
 	public function before()
 	{
-		parent::before();
-
 		$this->current_user = null;
 		$this->userprofile = null;
+
+		$this->set_init();
 
 		// Confirm whether simpleauth driver is certified
 		$driver = Auth::verified('simpleauth');
@@ -31,14 +33,26 @@ class Controller_Base extends Controller_Hybrid
 		View::set_global('current_user', $this->current_user);
 		View::set_global('current_userprofile', $this->userprofile);
 
-		if ( ! $this->is_restful())
+/*		if ( ! $this->is_restful())
 		{
 			$this->template->logined_flag = $logined;
 
 			// Also set it for view
 			$this->template->title = \Constants::$site_title;
 			$this->template->pagetitle = \Constants::$page_title['normal'];
-		}
+		}*/
+	}
+
+	/**
+	 * set init
+	 */
+	private function set_init() {
+		$this->modules = Request::main()->module;
+		$controller = strtolower(str_replace("Controller_", "", Request::main()->controller));
+		$controller = str_replace($this->modules . "\\", "", $controller);
+		$controller = str_replace("_", "/", $controller);
+		$this->controller = $controller;
+		$this->action = Request::main()->action;
 	}
 
 }
