@@ -26,6 +26,17 @@ class Model_Measuring_Value extends \Orm\Model
 		),
 	);
 
+	public static function validate($factory)
+	{
+		$val = Validation::forge($factory);
+		$val->add_field('measuring_point_id', 'Measuring_point_id', 'required|valid_string[numeric]');
+		$val->add_field('value1', 'Value1', 'required|valid_string[numeric,dots]');
+		$val->add_field('value2', 'Value2', 'required|valid_string[numeric,dots]');
+		$val->add_field('value3', 'Value3', 'required|valid_string[numeric,dots]');
+
+		return $val;
+	}
+
 	protected static $_table_name = 'measuring_values';
 
 }
