@@ -7,7 +7,7 @@ use Fuel\Core\Request;
 class Controller_Base extends \Controller_Base
 {
 	// set template
-	public $template = 'admin/template';
+	public $template = 'template';
 
 	/**
 	 * Preprocessing
@@ -25,7 +25,7 @@ class Controller_Base extends \Controller_Base
 				if (! \Auth::member($admin_group_id))
 				{
 					\Auth::logout();
-					\Response::redirect('/');
+					\Response::redirect('admin/projects');
 				}
 			}
 			else

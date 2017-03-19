@@ -24,6 +24,17 @@ class Model_Project extends \Orm\Model
 		),
 	);
 
+	public static function validate($factory)
+	{
+		$val = Validation::forge($factory);
+		$val->add_field('name', 'Name', 'required|max_length[255]');
+		$val->add_field('location', 'Location', 'required|max_length[255]');
+		$val->add_field('investor', 'Investor', 'required|max_length[255]');
+		$val->add_field('note', 'Note', 'max_length[1000]');
+
+		return $val;
+	}
+
 	protected static $_table_name = 'projects';
 
 }

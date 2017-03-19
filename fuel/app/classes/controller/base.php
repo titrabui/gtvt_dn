@@ -41,6 +41,7 @@ class Controller_Base extends \Fuel\Core\Controller_Template
 			$this->template->title = \Constants::$site_title;
 			$this->template->pagetitle = \Constants::$page_title['normal'];
 		}*/
+		return parent::before();
 	}
 
 	/**
@@ -53,6 +54,11 @@ class Controller_Base extends \Fuel\Core\Controller_Template
 		$controller = str_replace("_", "/", $controller);
 		$this->controller = $controller;
 		$this->action = Request::main()->action;
+		if (!empty($this->template) and !is_string($this->template)) {
+			$this->template->modeuls = Request::main()->module;
+			$this->template->controller = $controller;
+			$this->template->action = Request::main()->action;
+		}
 	}
 
 }

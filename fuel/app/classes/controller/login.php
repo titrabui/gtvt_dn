@@ -75,19 +75,21 @@ class Controller_Login extends Controller_Base
 					}
 					else
 					{
-						// The login error message sets the set error message
-						$this->template->set_global('error', \Constants::$error_message['login_error']);
+						// Set error message to view
+						$view->set('error', \Constants::$error_message['login_error']);
 					}
 				}
 				else
 				{
-					// The login error message sets the set error message
-					$this->template->set_global('error', \Constants::$error_message['already_logged_in']);
+					// Set error message to view
+					$view->set('error', \Constants::$error_message['already_logged_in']);
 				}
 			}
 		}
 
-		// Display login screen
-		$this->template->content = \View::forge('login/index', array('val' => $val), false);
+		// Call view template
+		$view = View::forge('login/index');
+
+		return $view;
 	}
 }
