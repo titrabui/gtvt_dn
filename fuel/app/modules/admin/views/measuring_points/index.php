@@ -8,6 +8,10 @@
 			</div>
 			<div class="box-body">
 				<div class="text-right">
+					<a class="btn btn-md btn-primary" href="[+$back_link+]">
+						<i class="fa fa-arrow-left"></i>
+						<span>Quay lại</span>
+					</a>
 					<a class="btn btn-md btn-primary" href="<?php //echo Uri::create('admin/projects/register'); ?>">
 						<i class="fa fa-plus"></i>
 						<span>TẠO MỚI</span>
@@ -15,7 +19,7 @@
 				</div>
 				<hr>
 				<div class="table">
-					<?php $pagina_counter = Pagination::instance('projects_pagination'); ?>
+					<?php $pagina_counter = Pagination::instance('measuring_points_pagination'); ?>
 					<?php $no_counter = (($pagina_counter->current_page - 1) * $pagina_counter->per_page) + 1; ?>
 					<table class="table table-hover">
 						<thead>
@@ -29,7 +33,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ($projects as $onecase) { ?>
+							<?php foreach ($measuring_points as $onecase) { ?>
 								<tr>
 									<td class="no"><?php echo $no_counter++; ?></td>
 									<td><?php echo Str::truncate($onecase['name'], 80); ?></td>
@@ -54,7 +58,7 @@
 							<?php } ?>
 						</tbody>
 					</table>
-					<?php if (count($projects) == 0) { ?>
+					<?php if (count($measuring_points) == 0) { ?>
 						<div class="row text-center">Không có dữ liệu</div>
 					<?php } ?>
 					<div class="row text-center"><?php echo html_entity_decode($pagination); ?></div>

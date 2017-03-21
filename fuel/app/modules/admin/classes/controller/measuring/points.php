@@ -2,7 +2,7 @@
 
 namespace Admin;
 
-class Controller_Projects extends Controller_Base {
+class Controller_Measuring_Points extends Controller_Base {
 
 	public function before()
 	{
@@ -16,30 +16,38 @@ class Controller_Projects extends Controller_Base {
 	 * @access  public
 	 * @return  void
 	 */
-	public function action_index()
+	public function action_view($id = null)
 	{
 /*		try
 		{*/
+			is_null($id) and \Response::redirect('admin/projects');
+
+			if ( ! $project = \Model_Project::find($id))
+			{
+				\Session::set_flash('error', 'Không tồn tại dự án #'.$id);
+				\Response::redirect('admin/error');
+			}
+
 			// pagination config
 			$config = array(
 				'name'           => 'bootstrap3',
-				'pagination_url' => \Uri::create('admin/projects'),
-				'total_items'    => \Model_Project::query()->count(),
+				'pagination_url' => \Uri::create('admin/measuring_points/index/'.$id),
+				'total_items'    => \Model_Measuring_Point::query()->count(),
 				'num_link'       => '5',
 				'per_page'       => '20',
 				'uri_segment'    => 'page',
 			);
 
-			$pagination = \Pagination::forge('projects_pagination', $config);
+			$pagination = \Pagination::forge('measuring_points_pagination', $config);
 
-			$data['projects'] = \Model_Project::query()
+			$data['measuring_points'] = \Model_Project::query()
 				->rows_offset($pagination->offset)
 				->rows_limit($pagination->per_page)
 				->get();
 
 			$data['pagination'] = $pagination;
 
-			$this->template->content = \View::forge('projects/index', $data);
+			$this->template->content = \View::forge('measuring_points/index', $data);
 /*		}
 		catch (\Exception $e)
 		{
