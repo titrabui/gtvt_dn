@@ -16,7 +16,7 @@ class Controller_Measuring_Values extends Controller_Base {
 	 * @access  public
 	 * @return  void
 	 */
-	public function action_view($id = null, $month_selected = null)
+	public function action_view($id = null)
 	{
 /*		try
 		{*/
@@ -48,11 +48,13 @@ class Controller_Measuring_Values extends Controller_Base {
 			$data['measuring_months'] = $measuring_months;
 
 			// if month is null then get month selected is current month
+			$month_selected = \Input::get('month_selected');
 			if (is_null($month_selected))
 			{
 				if (count($measuring_months))
 				{
-					$month_selected = array_values($measuring_months)[0];
+					reset($measuring_months);
+					$month_selected = key($measuring_months);
 				}
 				else
 				{
@@ -61,10 +63,17 @@ class Controller_Measuring_Values extends Controller_Base {
 			}
 
 			$data['month_selected'] = $month_selected;
-
+			
 			// Get measuring data
+			$array_temp = explode('/', $month_selected);
 			$data['measuring_values'] = \Model_Measuring_Value::query()
 				->where('measuring_point_id', $id)
+				->and_where_open()
+					->where(\DB::expr('MONTH(FROM_UNIXTIME(created_at))'), $array_temp[0])
+				->and_where_close()
+				->and_where_open()
+					->where(\DB::expr('YEAR(FROM_UNIXTIME(created_at))'), $array_temp[1])
+				->and_where_close()
 				->order_by('created_at', 'desc')
 				->from_cache(false)
 				->get();

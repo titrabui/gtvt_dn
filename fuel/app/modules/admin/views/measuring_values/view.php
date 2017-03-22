@@ -12,10 +12,10 @@
 						<?php echo Form::open(array(
 							'name'   => 'monthform',
 							'method' => 'get',
-							'action' => 'admin/measuring_values/view'.$measuring_points['project_id'],
-							'class'  => 'form-group'
+							'action' => 'admin/measuring_values/view/'.$measuring_points['project_id'],
+							'class'  => 'form-group month-form'
 						)); ?>
-						<?php echo Form::select('month', $month_selected, $measuring_months, ['class' => 'form-control month-select']); ?>
+						<?php echo Form::select('month_selected', $month_selected, $measuring_months, array('class' => 'form-control month-select')); ?>
 						<?php echo Form::close(); ?>
 					</div> <!-- col-lg-6 col-md-6 /-->
 					<div class="col-lg-10 col-md-6">
@@ -42,11 +42,11 @@
 								<th class="no">NO</th>
 								<th>Ngày</th>
 								<th>Thời gian</th>
-								<th>Tổng thời gian khảo sát (ngày)</th>
+								<th>Tổng thời gian<br>khảo sát (ngày)</th>
 								<th>Thời tiết</th>
-								<th>Nhiệt độ bên ngoài (&#8451;)</th>
-								<th>Nhiệt độ 2 cm dưới kết cấu (&#8451;)</th>
-								<th>Nhiệt độ vị trí dưới (&#8451;)</th>
+								<th>Nhiệt độ<br>bên ngoài (&#8451;)</th>
+								<th>Nhiệt độ<br>2 cm dưới kết cấu (&#8451;)</th>
+								<th>Nhiệt độ<br>vị trí dưới (&#8451;)</th>
 								<th class="edit-route"></th>
 							</tr>
 						</thead>
@@ -114,7 +114,7 @@
 </div>
 <script type="text/javascript">
 	$( ".month-select" ).change(function() {
-		alert( "Handler for .change() called." );
+		$( ".month-form" ).submit();
 	});
 </script>
 <?php //echo Asset::js('style.js'); ?>
