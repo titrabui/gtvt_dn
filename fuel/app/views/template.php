@@ -23,6 +23,8 @@
 	<?php echo Asset::css('plugins/datepicker/datepicker3.css'); ?>
 	<!-- Daterange picker -->
 	<?php echo Asset::css('plugins/daterangepicker/daterangepicker.css'); ?>
+	<!-- jQuery 2.2.3 -->
+	<?php echo Asset::js('plugins/jQuery/jquery-2.2.3.min.js'); ?>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -111,16 +113,11 @@
 
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-	
-</script>
-<!-- jQuery 2.2.3 -->
-<?php echo Asset::js('plugins/jQuery/jquery-2.2.3.min.js'); ?>
 <!-- Bootstrap 3.3.6 -->
 <?php echo Asset::js('bootstrap/js/bootstrap.min.js'); ?>
 <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<!-- datepicker -->
 <?php echo Asset::js('plugins/daterangepicker/daterangepicker.js'); ?>
 <!-- datepicker -->
 <?php echo Asset::js('plugins/datepicker/bootstrap-datepicker.js'); ?>

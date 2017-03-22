@@ -4,30 +4,35 @@
 		<div class="box box-success box-solid conversion-manage">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
-				Dự án
+				THÔNG TIN ĐIỂM ĐO
 			</div>
 			<div class="box-body">
 				<div class="text-right">
-					<a class="btn btn-md btn-primary" href="[+$back_link+]">
+					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/projects'); ?>">
 						<i class="fa fa-arrow-left"></i>
-						<span>Quay lại</span>
+						<span>QUAY LẠI</span>
 					</a>
-					<a class="btn btn-md btn-primary" href="<?php //echo Uri::create('admin/projects/register'); ?>">
+					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/projects/register'); ?>">
 						<i class="fa fa-plus"></i>
 						<span>TẠO MỚI</span>
 					</a>
 				</div>
 				<hr>
-				<div class="table">
+				<div class="table-responsive">
 					<?php $pagina_counter = Pagination::instance('measuring_points_pagination'); ?>
 					<?php $no_counter = (($pagina_counter->current_page - 1) * $pagina_counter->per_page) + 1; ?>
 					<table class="table table-hover">
 						<thead>
 							<tr class="tbl-header">
 								<th class="no">NO</th>
-								<th>Dự án</th>
-								<th>Địa điểm</th>
-								<th>Chủ đầu tư</th>
+								<th>Điểm đo</th>
+								<th>Code</th>
+								<th>Vị trí</th>
+								<th>Tọa độ X</th>
+								<th>Tọa độ Y</th>
+								<th>Cao độ đường</th>
+								<th>Tài khoản (VND)</th>
+								<th>Pin (%)</th>
 								<th>Ghi chú</th>
 								<th class="edit-route"></th>
 							</tr>
@@ -37,15 +42,20 @@
 								<tr>
 									<td class="no"><?php echo $no_counter++; ?></td>
 									<td><?php echo Str::truncate($onecase['name'], 80); ?></td>
+									<td><?php echo $onecase['id']; ?></td>
 									<td><?php echo Str::truncate($onecase['location'], 80); ?></td>
-									<td><?php echo Str::truncate($onecase['investor'], 80); ?></td>
+									<td><?php echo $onecase['x_coordinate']; ?></td>
+									<td><?php echo $onecase['y_coordinate']; ?></td>
+									<td><?php echo $onecase['road_height']; ?></td>
+									<td><?php echo Str::truncate($onecase['account'], 80); ?></td>
+									<td><?php echo $onecase['battery']; ?></td>
 									<td><?php echo Str::truncate($onecase['note'], 80); ?></td>
 									<td class="edit-route pull-right">
-										<a class="btn btn-sm btn-primary" href="<?php echo Uri::create("admin/measuring_points/view/".$onecase['id']); ?>">
+										<a class="btn btn-sm btn-primary" href="<?php echo Uri::create("admin/measuring_values/view/".$onecase['id']); ?>">
 											<i class="fa fa-exchange"></i>
 											<span>Xem</span>
 										</a>	
-										<a class="btn btn-sm btn-warning" href="<?php echo Uri::create("admin/projects/edit/".$onecase['id']); ?>">
+										<a class="btn btn-sm btn-warning" href="<?php echo Uri::create("admin/measuring_points/edit/".$onecase['id']); ?>">
 											<i class="fa fa-edit"></i>
 											<span>Chỉnh sửa</span>
 										</a>

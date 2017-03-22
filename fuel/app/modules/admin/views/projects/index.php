@@ -4,7 +4,7 @@
 		<div class="box box-success box-solid conversion-manage">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
-				Dự án
+				DỰ ÁN
 			</div>
 			<div class="box-body">
 				<div class="text-right">
@@ -14,7 +14,7 @@
 					</a>
 				</div>
 				<hr>
-				<div class="table">
+				<div class="table-responsive">
 					<?php $pagina_counter = Pagination::instance('projects_pagination'); ?>
 					<?php $no_counter = (($pagina_counter->current_page - 1) * $pagina_counter->per_page) + 1; ?>
 					<table class="table table-hover">

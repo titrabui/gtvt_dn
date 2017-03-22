@@ -31,7 +31,7 @@ class Controller_Measuring_Points extends Controller_Base {
 			// pagination config
 			$config = array(
 				'name'           => 'bootstrap3',
-				'pagination_url' => \Uri::create('admin/measuring_points/index/'.$id),
+				'pagination_url' => \Uri::create('admin/measuring_points/view/'.$id),
 				'total_items'    => \Model_Measuring_Point::query()->count(),
 				'num_link'       => '5',
 				'per_page'       => '20',
@@ -40,14 +40,15 @@ class Controller_Measuring_Points extends Controller_Base {
 
 			$pagination = \Pagination::forge('measuring_points_pagination', $config);
 
-			$data['measuring_points'] = \Model_Project::query()
+			$data['measuring_points'] = \Model_Measuring_Point::query()
+				->where('project_id', $id)
 				->rows_offset($pagination->offset)
 				->rows_limit($pagination->per_page)
 				->get();
 
 			$data['pagination'] = $pagination;
 
-			$this->template->content = \View::forge('measuring_points/index', $data);
+			$this->template->content = \View::forge('measuring_points/view', $data);
 /*		}
 		catch (\Exception $e)
 		{
