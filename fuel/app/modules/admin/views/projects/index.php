@@ -8,7 +8,7 @@
 			</div>
 			<div class="box-body">
 				<div class="text-right">
-					<a class="btn btn-md btn-primary" href="<?php //echo Uri::create('admin/projects/register'); ?>">
+					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/projects/register'); ?>">
 						<i class="fa fa-plus"></i>
 						<span>TẠO MỚI</span>
 					</a>
@@ -54,11 +54,11 @@
 							<?php } ?>
 						</tbody>
 					</table>
-					<?php if (count($projects) == 0) { ?>
-						<div class="row text-center">Không có dữ liệu</div>
-					<?php } ?>
-					<div class="row text-center"><?php echo html_entity_decode($pagination); ?></div>
-				</div>
+				</div> <!-- table-responsive /-->
+				<?php if (count($projects) == 0) { ?>
+					<div class="row text-center">Không có dữ liệu</div>
+				<?php } ?>
+				<div class="row text-center"><?php echo html_entity_decode($pagination); ?></div>
 			</div>
 		</div>
 	</div>

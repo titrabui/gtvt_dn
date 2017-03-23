@@ -17,6 +17,8 @@
 	<!-- iCheck -->
 	<?php echo Asset::css('plugins/iCheck/square/blue.css'); ?>
 
+	<?php echo Asset::css('style.css'); ?>
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -24,44 +26,63 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-	<div class="login-logo">
-	<a href="<?php echo Uri::create('/') ?>"><b>Admin</b>LTE</a>
+<body class="hold-transition login-page" style="background: url('<?php echo Asset::get_file('login_bg.jpg', 'img');?>');">
+<div class="row">
+	<div class="login-logo" style="margin-top: 40px;">
+		<div class="col-lg-4 col-md-6">
+			<!-- So GTVT -->
+			<?php echo Asset::img('logo-danang.png', array('class' => 'investor-logo')); ?>
+			<!-- BkECC -->
+			<?php echo Asset::img('Bk-ecc.jpg', array('class' => 'investor-logo')); ?>
+			<!-- BKDN -->
+			<?php echo Asset::img('logo-bkdn.jpg', array('class' => 'investor-logo')); ?>
+		</div>
+		<div class="col-lg-4 col-md-6">
+			<a style="color: #d2d6de" href="<?php echo Uri::create('/') ?>"><b>HỆ THỐNG QUẢN LÝ<br>DỮ LIỆU NHIỆT ĐỘ BÊ TÔNG NHỰA</b></a>
+		</div>
+		<div class="col-lg-4 col-md-6">
+			<!-- Khoa cau duong -->
+			<?php echo Asset::img('logo-cauduongbkdn.JPEG', array('class' => 'investor-logo')); ?>
+			<!-- BK-ITEC -->
+			<?php echo Asset::img('BK-ITEC_Logo.png', array('class' => 'investor-logo')); ?>
+			<!-- CEI -->
+			<?php echo Asset::img('CEI_logo_1.png', array('class' => 'investor-logo')); ?>
+		</div>
 	</div>
+</div>
+<div class="login-box">
 	<!-- /.login-logo -->
 	<div class="login-box-body">
-	<p class="login-box-msg">ĐĂNG NHẬP HỆ THỐNG</p>
+		<p class="login-box-msg">ĐĂNG NHẬP HỆ THỐNG</p>
 
-	<form action="<?php echo \Uri::create('/login'); ?>" method="post">
-		<div class="form-group has-feedback">
-			<input type="text" name="username" class="form-control" placeholder="Tài khoản">
-			<span class="glyphicon glyphicon-user form-control-feedback"></span>
-		</div>
-		<div class="form-group has-feedback">
-			<input type="password" name="password" class="form-control" placeholder="Mật khẩu">
-			<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-		</div>
-		<div class="row">
-			<div class="col-xs-8">
-				<div class="checkbox icheck">
-					<label>
-						<input type="checkbox"> Remember Me
-					</label>
+		<form action="<?php echo \Uri::create('/login'); ?>" method="post">
+			<div class="form-group has-feedback">
+				<input type="text" name="username" class="form-control" placeholder="Tài khoản">
+				<span class="glyphicon glyphicon-user form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="password" name="password" class="form-control" placeholder="Mật khẩu">
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			</div>
+			<div class="row">
+				<div class="col-xs-8">
+					<div class="checkbox icheck">
+						<label>
+							<input type="checkbox"> Remember Me
+						</label>
+					</div>
 				</div>
+				<!-- /.col -->
+				<div class="col-xs-4">
+					<button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
+				</div>
+				<!-- /.col -->
 			</div>
-			<!-- /.col -->
-			<div class="col-xs-4">
-				<button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
-			</div>
-			<!-- /.col -->
-		</div>
-	</form>
+		</form>
 	</div>
 	<!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
-
 <!-- jQuery 2.2.3 -->
 <?php echo Asset::js('plugins/jQuery/jquery-2.2.3.min.js'); ?>
 <!-- Bootstrap 3.3.6 -->

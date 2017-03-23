@@ -68,11 +68,11 @@
 							<?php } ?>
 						</tbody>
 					</table>
-					<?php if (count($measuring_points) == 0) { ?>
-						<div class="row text-center">Không có dữ liệu</div>
-					<?php } ?>
-					<div class="row text-center"><?php echo html_entity_decode($pagination); ?></div>
 				</div>
+				<?php if (count($measuring_points) == 0) { ?>
+					<div class="row text-center">Không có dữ liệu</div>
+				<?php } ?>
+				<div class="row text-center"><?php echo html_entity_decode($pagination); ?></div>
 			</div>
 		</div>
 	</div>

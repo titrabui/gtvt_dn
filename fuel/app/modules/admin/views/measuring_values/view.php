@@ -35,18 +35,19 @@
 				</div> <!-- row /-->
 				<hr>
 				<div class="table-responsive">
-					<?php $no_counter = 1; ?>
+					<?php $pagina_counter = Pagination::instance('measuring_values_pagination'); ?>
+					<?php $no_counter = (($pagina_counter->current_page - 1) * $pagina_counter->per_page) + 1; ?>
 					<table class="table table-hover">
 						<thead>
 							<tr class="tbl-header">
-								<th class="no">NO</th>
+								<th class="text-center">NO</th>
 								<th>Ngày</th>
 								<th>Thời gian</th>
-								<th>Tổng thời gian<br>khảo sát (ngày)</th>
-								<th>Thời tiết</th>
-								<th>Nhiệt độ<br>bên ngoài (&#8451;)</th>
-								<th>Nhiệt độ<br>2 cm dưới kết cấu (&#8451;)</th>
-								<th>Nhiệt độ<br>vị trí dưới (&#8451;)</th>
+								<th class="text-center">Tổng thời gian<br>khảo sát (ngày)</th>
+								<th class="text-center">Thời tiết</th>
+								<th class="text-center">Nhiệt độ<br>bên ngoài (&#8451;)</th>
+								<th class="text-center">Nhiệt độ<br>2 cm dưới kết cấu (&#8451;)</th>
+								<th class="text-center">Nhiệt độ<br>vị trí dưới (&#8451;)</th>
 								<th class="edit-route"></th>
 							</tr>
 						</thead>
@@ -61,14 +62,14 @@
 									$weather_current = $weather[0];
 								} ?>
 								<tr>
-									<td class="no"><?php echo $no_counter++; ?></td>
+									<td class="text-center"><?php echo $no_counter++; ?></td>
 									<td><?php echo Date::forge($onecase['created_at'])->format("%d - %m - %Y"); ?></td>
 									<td><?php echo Date::forge($onecase['created_at'])->format("%H : %M : %S"); ?></td>
-									<td><?php echo $onecase['total_time_surveying']; ?></td>
-									<td><?php echo $weather_icon; echo $weather_current;?></td>
-									<td><?php echo $onecase['value1']; ?></td>
-									<td><?php echo $onecase['value2']; ?></td>
-									<td><?php echo $onecase['value3']; ?></td>
+									<td class="text-center"><?php echo $onecase['total_time_surveying']; ?></td>
+									<td class="text-center"><?php echo $weather_icon; echo $weather_current;?></td>
+									<td class="text-center"><?php echo $onecase['value1']; ?></td>
+									<td class="text-center"><?php echo $onecase['value2']; ?></td>
+									<td class="text-center"><?php echo $onecase['value3']; ?></td>
 									<td class="edit-route pull-right">
 										<a class="btn btn-sm btn-danger" href="#">
 											<i class="fa fa-trash"></i>
@@ -79,10 +80,11 @@
 							<?php } ?>
 						</tbody>
 					</table>
-					<?php if (count($measuring_values) == 0) { ?>
-						<div class="row text-center">Không có dữ liệu</div>
-					<?php } ?>
-				</div>
+				</div> <!-- table-responsive /-->
+				<?php if (count($measuring_values) == 0) { ?>
+					<div class="row text-center">Không có dữ liệu</div>
+				<?php } ?>
+				<div class="row text-center"><?php echo html_entity_decode($pagination); ?></div>
 			</div>
 		</div>
 	</div>
