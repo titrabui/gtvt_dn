@@ -17,7 +17,7 @@
 		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
-				CHỈNH SỬA DỰ ÁN
+				CẬP NHẬT DỰ ÁN
 			</div>
 			<div class="box-body">
 				<?php
@@ -33,7 +33,7 @@
 					</div>
 				<?php } ?>
 				<?php echo Form::open(array(
-					'name'   => 'registerform',
+					'name'   => 'editform',
 					'method' => 'post',
 					'action' => 'admin/projects/edit/'.$id,
 					'class'  => 'form-horizontal'

@@ -126,7 +126,7 @@ class Controller_Measuring_Points extends Controller_Base {
 
 			(is_null($id) || ! \Input::get('project_id')) and \Response::redirect('admin/projects');
 
-			if ( ! $measuring_point = \Model_Measuring_Point::find($measuring_point))
+			if ( ! $measuring_point = \Model_Measuring_Point::find($id))
 			{
 				$this->redirect_to_error_page(array('message' => 'Không tồn tại điểm đo #'.$id));
 			}
@@ -134,12 +134,12 @@ class Controller_Measuring_Points extends Controller_Base {
 			$project_id = \Input::get('project_id');
 			if ( ! $project = \Model_Project::find($project_id))
 			{
-				$this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$id));
+				$this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$project_id));
 			}
 
 			if ( ! \Input::post('back'))
 			{
-				$val = \Model_Project::validate('Measuring_Point_Page');
+				$val = \Model_Measuring_Point::validate('Measuring_Point_Page');
 
 				if ($val->run())
 				{
@@ -152,23 +152,25 @@ class Controller_Measuring_Points extends Controller_Base {
 					$measuring_point->note         = \Input::post('note');
 				
 					\Session::set('measuring_point', $measuring_point);
-					\Response::redirect('admin/measuring_points/confirm/'.$id);
+					\Response::redirect('admin/measuring_points/confirm/'.$id.'?project_id='.$project_id);
 				}
 				else
 				{
 					if (\Input::method() == 'POST')
 					{
-						$project->name = $val->validated('name');
-						$project->location = $val->validated('location');
-						$project->investor = $val->validated('investor');
-						$project->note = $val->validated('note');
+						$measuring_point->name         = $val->validated('name');
+						$measuring_point->location     = $val->validated('location');
+						$measuring_point->x_coordinate = $val->validated('x_coordinate');
+						$measuring_point->y_coordinate = $val->validated('y_coordinate');
+						$measuring_point->road_height  = $val->validated('road_height');
+						$measuring_point->note         = $val->validated('note');
 
 						\Session::set_flash('error', $val->error());
 					}
 				}
 			}
 
-			$this->template->content = \View::forge('projects/edit.php', array('project' => $project));
+			$this->template->content = \View::forge('measuring_points/edit.php', array('measuring_point' => $measuring_point, 'project_id' => $project_id));
 		}
 		catch (\Exception $e)
 		{

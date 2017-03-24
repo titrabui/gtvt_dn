@@ -5,8 +5,10 @@
 	$y_coordinate = '';
 	$road_height = '';
 	$note = '';
+
 	if (isset($measuring_point))
 	{
+		$id = $measuring_point->id;
 		$name = $measuring_point->name;
 		$location = $measuring_point->location;
 		$x_coordinate = $measuring_point->x_coordinate;
@@ -20,7 +22,7 @@
 		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
-				THÊM ĐIỂM ĐO
+				CẬP NHẬT ĐIỂM ĐO
 			</div>
 			<div class="box-body">
 				<?php
@@ -36,9 +38,9 @@
 					</div>
 				<?php } ?>
 				<?php echo Form::open(array(
-					'name'   => 'registerform',
+					'name'   => 'editform',
 					'method' => 'post',
-					'action' => 'admin/measuring_points/register/'.$project_id,
+					'action' => 'admin/measuring_points/edit/'.$id.'?project_id='.$project_id,
 					'class'  => 'form-horizontal'
 				)); ?>
 					<div class="form-group">
