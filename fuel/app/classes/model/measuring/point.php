@@ -34,19 +34,18 @@ class Model_Measuring_Point extends \Orm\Model
 	{
 		$val = Validation::forge($factory);
 
-		$val->add_field('account', 'Account', 'required|max_length[512]');
-		$val->add_field('battery', 'Battery', 'required|valid_string[numeric]|numeric_between[0,100]');
+		$val->add_field('account', 'Account', 'max_length[512]');
+		$val->add_field('battery', 'Battery', 'valid_string[numeric]|numeric_between[0,100]');
 
 		if ($factory == 'Measuring_Point_Page')
 		{
-			$val->add_field('project_id', 'Project_id', 'required|valid_string[numeric]');
 			$val->add_field('name', 'Name', 'required|max_length[256]');
 			$val->add_field('location', 'Location', 'required|max_length[256]');
 			$val->add_field('x_coordinate', 'X_coordinate', 'required|valid_string[numeric,dots]');
 			$val->add_field('y_coordinate', 'Y_coordinate', 'required|valid_string[numeric,dots]');
 			$val->add_field('road_height', 'Road_height', 'required|valid_string[numeric,dots]');
-			$val->add_field('is_request', 'Is_request', 'required|valid_string[numeric]|numeric_between[0,1]');
-			$val->add_field('note', 'Note', 'required|max_length[1000]');
+			$val->add_field('is_request', 'Is_request', 'valid_string[numeric]|numeric_between[0,1]');
+			$val->add_field('note', 'Note', 'max_length[1000]');
 		}
 
 		return $val;

@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-lg-12 col-md-6 box-layout">
 		<!-- small box -->
-		<div class="box box-success box-solid conversion-manage">
+		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
 				DỰ ÁN

@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-lg-12 col-md-6 box-layout">
 		<!-- small box -->
-		<div class="box box-success box-solid conversion-manage">
+		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
 				THÔNG TIN ĐIỂM ĐO
@@ -12,7 +12,7 @@
 						<i class="fa fa-arrow-left"></i>
 						<span>QUAY LẠI</span>
 					</a>
-					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/projects/register'); ?>">
+					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_points/register/'.$project_id); ?>">
 						<i class="fa fa-plus"></i>
 						<span>TẠO MỚI</span>
 					</a>
@@ -55,7 +55,7 @@
 											<i class="fa fa-exchange"></i>
 											<span>Xem</span>
 										</a>	
-										<a class="btn btn-sm btn-warning" href="<?php echo Uri::create("admin/measuring_points/edit/".$onecase['id']); ?>">
+										<a class="btn btn-sm btn-warning" href="<?php echo Uri::create("admin/measuring_points/edit/".$onecase['id'].'?project_id='.$project_id); ?>">
 											<i class="fa fa-edit"></i>
 											<span>Chỉnh sửa</span>
 										</a>

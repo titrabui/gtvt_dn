@@ -13,7 +13,7 @@
 ?>
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-md-offset-3 box-layout">
-		<div class="box box-success box-solid">
+		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
 				THÊM DỰ ÁN
@@ -62,7 +62,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-md-4 col-md-offset-5">
+						<div class="col-md-12 text-center">
 							<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/projects'); ?>">
 								<span><i class="fa fa-backward"></i></span>
 								Quay lại

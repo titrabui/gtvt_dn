@@ -60,7 +60,7 @@ class Controller_Projects extends Controller_Base {
 			// remove project session
 			\Session::get('project') and \Session::delete('project');
 
-			if (\Input::method() == 'POST' &&  ! \Input::post('back'))
+			if (\Input::method() == 'POST' && ! \Input::post('back'))
 			{
 				$val = \Model_Project::validate('register');
 

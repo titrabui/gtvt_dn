@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-lg-12 col-md-6 box-layout">
 		<!-- small box -->
-		<div class="box box-success box-solid conversion-manage">
+		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
 				ĐIỂM ĐO: <?php echo $measuring_points['name']; ?>
@@ -46,8 +46,8 @@
 								<th class="text-center">Tổng thời gian<br>khảo sát (ngày)</th>
 								<th class="text-center">Thời tiết</th>
 								<th class="text-center">Nhiệt độ<br>bên ngoài (&#8451;)</th>
-								<th class="text-center">Nhiệt độ<br>2 cm dưới kết cấu (&#8451;)</th>
-								<th class="text-center">Nhiệt độ<br>vị trí dưới (&#8451;)</th>
+								<th class="text-center">Nhiệt độ<br>vị trí 1 dưới kết cấu (&#8451;)</th>
+								<th class="text-center">Nhiệt độ<br>vị trí 2 dưới kết cấu (&#8451;)</th>
 								<th class="edit-route"></th>
 							</tr>
 						</thead>

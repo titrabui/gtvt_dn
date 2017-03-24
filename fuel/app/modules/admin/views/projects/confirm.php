@@ -23,10 +23,10 @@
 ?>
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-md-offset-3 box-layout">
-		<div class="box box-success box-solid">
+		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>
-				THÊM DỰ ÁN
+				XÁC NHẬN DỰ ÁN
 			</div>
 			<div class="box-body margin-left20">
 				<?php echo Form::open(array(
@@ -62,7 +62,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-md-4 col-md-offset-5">
+						<div class="col-md-12 text-center">
 							<button class="btn btn-md btn-primary" onclick="backToRegiserAndEditForm()">
 								<span><i class="fa fa-backward"></i></span>
 								Quay lại
