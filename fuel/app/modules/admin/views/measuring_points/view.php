@@ -12,9 +12,9 @@
 						<i class="fa fa-arrow-left"></i>
 						<span>QUAY LẠI</span>
 					</a>
-					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_points/register/'.$project_id); ?>">
+					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_points/register?project='.$project_id); ?>">
 						<i class="fa fa-plus"></i>
-						<span>TẠO MỚI</span>
+						<span>THÊM ĐIỂM ĐO</span>
 					</a>
 				</div>
 				<hr>
@@ -55,7 +55,7 @@
 											<i class="fa fa-exchange"></i>
 											<span>Xem</span>
 										</a>	
-										<a class="btn btn-sm btn-warning" href="<?php echo Uri::create("admin/measuring_points/edit/".$onecase['id'].'?project_id='.$project_id); ?>">
+										<a class="btn btn-sm btn-warning" href="<?php echo Uri::create("admin/measuring_points/edit/".$onecase['id'].'?project='.$project_id); ?>">
 											<i class="fa fa-edit"></i>
 											<span>Chỉnh sửa</span>
 										</a>

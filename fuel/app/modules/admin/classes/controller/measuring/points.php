@@ -63,15 +63,16 @@ class Controller_Measuring_Points extends Controller_Base {
 	 * @access  public
 	 * @return  void
 	 */
-	public function action_register($project_id = null)
+	public function action_register()
 	{
 		try
 		{
 			// remove project session
 			\Session::get('measuring_point') and \Session::delete('measuring_point');
 
-			is_null($project_id) and \Response::redirect('admin/projects');
+			(! \Input::get('project')) and \Response::redirect('admin/projects');
 
+			$project_id = \Input::get('project');
 			if ( ! $project = \Model_Project::find($project_id))
 			{
 				$this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$project_id));
@@ -94,7 +95,7 @@ class Controller_Measuring_Points extends Controller_Base {
 					));
 
 					\Session::set('measuring_point', $measuring_point);
-					\Response::redirect('admin/measuring_points/confirm/'.$project_id);
+					\Response::redirect('admin/measuring_points/confirm?project='.$project_id);
 				}
 				else
 				{
@@ -124,14 +125,14 @@ class Controller_Measuring_Points extends Controller_Base {
 			// remove project session
 			\Session::get('measuring_point') and \Session::delete('measuring_point');
 
-			(is_null($id) || ! \Input::get('project_id')) and \Response::redirect('admin/projects');
+			(is_null($id) || ! \Input::get('project')) and \Response::redirect('admin/projects');
 
 			if ( ! $measuring_point = \Model_Measuring_Point::find($id))
 			{
 				$this->redirect_to_error_page(array('message' => 'Không tồn tại điểm đo #'.$id));
 			}
 
-			$project_id = \Input::get('project_id');
+			$project_id = \Input::get('project');
 			if ( ! $project = \Model_Project::find($project_id))
 			{
 				$this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$project_id));
@@ -144,15 +145,16 @@ class Controller_Measuring_Points extends Controller_Base {
 				if ($val->run())
 				{
 					$measuring_point->id           = $id;
+					$measuring_point->project_id   = $project_id;
 					$measuring_point->name         = \Input::post('name');
 					$measuring_point->location     = \Input::post('location');
 					$measuring_point->x_coordinate = \Input::post('x_coordinate');
 					$measuring_point->y_coordinate = \Input::post('y_coordinate');
 					$measuring_point->road_height  = \Input::post('road_height');
 					$measuring_point->note         = \Input::post('note');
-				
+
 					\Session::set('measuring_point', $measuring_point);
-					\Response::redirect('admin/measuring_points/confirm/'.$id.'?project_id='.$project_id);
+					\Response::redirect('admin/measuring_points/confirm/'.$id.'?project='.$project_id);
 				}
 				else
 				{
@@ -190,13 +192,13 @@ class Controller_Measuring_Points extends Controller_Base {
 		{
 			if (\Input::method() != 'POST')
 			{
-				// prevent redirect without projects data from edit or register
+				// prevent redirect without measuring_point data from edit or register
 				(\Input::referrer() == '') and $this->redirect_to_error_page(array('message' =>'Không được thực hiện hành động này vì lý do bảo mật'));
 			}
 			else
 			{
-				// remove project session
-				\Session::delete('project');
+				// remove measuring_point session
+				\Session::delete('measuring_point');
 
 				( ! is_null($id) && ! $project = \Model_Project::find($id)) and $this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$id));
 
@@ -238,7 +240,7 @@ class Controller_Measuring_Points extends Controller_Base {
 				}
 			}
 		
-			$this->template->content = \View::forge('projects/confirm.php');
+			$this->template->content = \View::forge('measuring_points/confirm.php');
 		}
 		catch (\Exception $e)
 		{

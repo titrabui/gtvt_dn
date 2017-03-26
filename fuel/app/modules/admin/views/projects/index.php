@@ -10,7 +10,7 @@
 				<div class="text-right">
 					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/projects/register'); ?>">
 						<i class="fa fa-plus"></i>
-						<span>TẠO MỚI</span>
+						<span>THÊM DỰ ÁN</span>
 					</a>
 				</div>
 				<hr>

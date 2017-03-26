@@ -5,7 +5,6 @@
 	$y_coordinate = '';
 	$road_height = '';
 	$note = '';
-
 	if (isset($measuring_point))
 	{
 		$id = $measuring_point->id;
@@ -40,7 +39,7 @@
 				<?php echo Form::open(array(
 					'name'   => 'editform',
 					'method' => 'post',
-					'action' => 'admin/measuring_points/edit/'.$id.'?project_id='.$project_id,
+					'action' => 'admin/measuring_points/edit/'.$id.'?project='.$project_id,
 					'class'  => 'form-horizontal'
 				)); ?>
 					<div class="form-group">
