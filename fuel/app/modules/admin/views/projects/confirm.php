@@ -22,7 +22,7 @@
 	}
 ?>
 <div class="row">
-	<div class="col-lg-6 col-md-6 col-md-offset-3 box-layout">
+	<div class="col-lg-8 col-md-8 col-md-offset-2 box-layout">
 		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
 				<span><i class="fa fa-tasks"></i></span>

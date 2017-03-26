@@ -45,7 +45,7 @@
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label class="control-common-label">Tên điểm đo</label></div>
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="name" name="name" value="<?php echo Input::post('name', $name); ?>" placeholder="Tên dự án">
+							<input type="text" class="form-control" id="name" name="name" value="<?php echo Input::post('name', $name); ?>" placeholder="Tên điểm đo">
 						</div>
 					</div>
 					<div class="form-group">

@@ -1,3 +1,14 @@
+$( document ).ready(function() {
+	$('#measuringPointModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)					// Button that triggered the modal
+		var measuring_point = button.data('whatever').split(',')	// Extract info from data-* attributes
+
+		var modal = $(this)
+		modal.find('.modal-message').text('Bạn có chắc chắn muốn xóa điểm đo ' + measuring_point[1] + ' không?')
+		modal.find('.modal-submit').attr('onclick', 'measuringPointDelete(\"' + measuring_point[0] + '\")')
+	})
+});
+
 function backToRegiserAndEditForm(project_id) {
 	var confirm_form = document.getElementById("confirm-form");
 
@@ -55,4 +66,8 @@ function removeParam(key, sourceURL) {
         rtn = rtn + "?" + params_arr.join("&");
     }
     return rtn;
+}
+
+function measuringPointDelete(url) {
+	window.location.href = url;
 }

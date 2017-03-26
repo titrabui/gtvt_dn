@@ -200,39 +200,57 @@ class Controller_Measuring_Points extends Controller_Base {
 				// remove measuring_point session
 				\Session::delete('measuring_point');
 
-				( ! is_null($id) && ! $project = \Model_Project::find($id)) and $this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$id));
+				(! \Input::get('project')) and \Response::redirect('admin/projects');
+
+				if ( ! is_null($id) && ! $measuring_point = \Model_Measuring_Point::find($id))
+				{
+					$this->redirect_to_error_page(array('message' => 'Không tồn tại điểm đo #'.$id));
+				}
+
+				$project_id = \Input::get('project');
+				if ( ! $project = \Model_Project::find($project_id))
+				{
+					$this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$project_id));
+				}
 
 				// check token from confirm form
-				\Security::check_token() or $this->redirect_to_error_page(\Constants::$error_message['expired_csrf_token']);
+				\Security::check_token() or $this->redirect_to_error_page(array('message' => \Constants::$error_message['expired_csrf_token']));
 
-				$val = \Model_Project::validate('confirm');
+				$val = \Model_Measuring_Point::validate('Measuring_Point_Page');
 
 				if ($val->run())
 				{
-					if (isset($project))
+					if (isset($measuring_point))
 					{
 						// save data to edit
-						$project->id       = $id;
-						$project->name     = \Input::post('name');
-						$project->location = \Input::post('location');
-						$project->investor = \Input::post('investor');
-						$project->note     = \Input::post('note');
+						$measuring_point->id           = $id;
+						$measuring_point->project_id   = $project_id;
+						$measuring_point->name         = \Input::post('name');
+						$measuring_point->location     = \Input::post('location');
+						$measuring_point->x_coordinate = \Input::post('x_coordinate');
+						$measuring_point->y_coordinate = \Input::post('y_coordinate');
+						$measuring_point->road_height  = \Input::post('road_height');
+						$measuring_point->note         = \Input::post('note');
 					}
 					else
 					{
 						// create new one and save data to register
-						$project = \Model_Project::forge(array(
-							'name'     => \Input::post('name'),
-							'location' => \Input::post('location'),
-							'investor' => \Input::post('investor'),
-							'note'     => \Input::post('note'),
+						$measuring_point = \Model_Measuring_Point::forge(array(
+							'project_id'   => $project_id,
+							'name'         => \Input::post('name'),
+							'location'     => \Input::post('location'),
+							'x_coordinate' => \Input::post('x_coordinate'),
+							'y_coordinate' => \Input::post('y_coordinate'),
+							'road_height'  => \Input::post('road_height'),
+							'is_request'   => 0,
+							'note'         => \Input::post('note'),
 						));
 					}
 
-					// save project
-					($project and $project->save()) or $this->redirect_to_error_page(array('message' => 'Không thể lưu dự án này'));
-					\Session::set_flash('complete', 'complete');
-					\Response::redirect('admin/projects/complete');	
+					// save measuring_point
+					($measuring_point and $measuring_point->save()) or $this->redirect_to_error_page(array('message' => 'Không thể lưu điểm đo này'));
+					\Session::set_flash('project_id', $project_id);
+					\Response::redirect('admin/measuring_points/complete');	
 				}
 				else
 				{
@@ -256,8 +274,33 @@ class Controller_Measuring_Points extends Controller_Base {
 	 */
 	public function action_complete()
 	{
-		\Session::get_flash('complete') or \Response::redirect('manager/milestones');
-		$this->template->content = \View_Smarty::forge('milestones/complete.tpl');
+		$project_id = \Session::get_flash('project_id') or \Response::redirect('admin/projects');
+		$this->template->content = \View::forge('measuring_points/complete.php', array('project_id' => $project_id));
+	}
+
+	/**
+	 * The delete action.
+	 *
+	 * @access  public
+	 * @return  void
+	 */
+	public function action_delete($id = null)
+	{
+		( ! \Input::get('project')) and \Response::redirect('admin/projects');
+
+		if ( ! is_null($id) && ! $measuring_point = \Model_Measuring_Point::find($id))
+		{
+			$this->redirect_to_error_page(array('message' => 'Không tồn tại điểm đo #'.$id));
+		}
+
+		$project_id = \Input::get('project');
+		if ( ! $project = \Model_Project::find($project_id))
+		{
+			$this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$project_id));
+		}
+
+		$measuring_point->delete() or $this->redirect_to_error_page(array('message' => 'Không thể xóa điểm đo này'));
+		\Response::redirect('admin/measuring_points/view/'.$project_id);
 	}
 
 	/**

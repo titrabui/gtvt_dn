@@ -1,3 +1,14 @@
+$( document ).ready(function() {
+	$('#projectModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)					// Button that triggered the modal
+		var project = button.data('whatever').split(',')	// Extract info from data-* attributes
+
+		var modal = $(this)
+		modal.find('.modal-message').text('Bạn có chắc chắn muốn xóa dự án ' + project[1] + ' không?')
+		modal.find('.modal-submit').attr('onclick', 'projectDelete(\"' + project[0] + '\")')
+	})
+});
+
 function backToRegiserAndEditForm() {
 	var confirm_form = document.getElementById("confirm-form");
 
@@ -34,4 +45,8 @@ function backToRegiserAndEditForm() {
 function projectConfirmSubmit() {
 	$('.btn').prop('disabled', true);
 	$('#confirm-form').submit();
+}
+
+function projectDelete(url) {
+	window.location.href = url;
 }

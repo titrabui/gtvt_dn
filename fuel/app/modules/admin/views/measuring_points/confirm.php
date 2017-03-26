@@ -83,7 +83,7 @@
 								<span><i class="fa fa-backward"></i></span>
 								Quay lại
 							</button>
-							<button class="btn btn-md btn-primary" onclick="measuringPointConfirmSubmit(<?php echo $measuring_point->project_id?>)">
+							<button class="btn btn-md btn-primary" onclick="measuringPointConfirmSubmit()">
 								<span><i class="fa fa-pencil"></i></span>
 								Xác nhận
 							</button>

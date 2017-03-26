@@ -37,4 +37,11 @@ class Model_Project extends \Orm\Model
 
 	protected static $_table_name = 'projects';
 
+	protected static $_has_many = array('measuring_points' => array(
+		'model_to'       => 'Model_Measuring_Point',
+		'key_from'       => 'id',
+		'key_to'         => 'project_id',
+		//'cascade_save'   => true,
+		'cascade_delete' => true,
+	));
 }

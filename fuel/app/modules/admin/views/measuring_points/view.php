@@ -57,12 +57,12 @@
 										</a>	
 										<a class="btn btn-sm btn-warning" href="<?php echo Uri::create("admin/measuring_points/edit/".$onecase['id'].'?project='.$project_id); ?>">
 											<i class="fa fa-edit"></i>
-											<span>Chỉnh sửa</span>
+											<span>Sửa</span>
 										</a>
-										<a class="btn btn-sm btn-danger" href="#">
+										<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#measuringPointModal" data-whatever="<?php echo Uri::create("admin/measuring_points/delete/".$onecase['id'].'?project=').$project_id.','.$onecase['name']; ?>">
 											<i class="fa fa-trash"></i>
 											<span>Xóa</span>
-										</a>
+										</button>
 									</td>
 								</tr>
 							<?php } ?>
@@ -80,26 +80,24 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="milestone-modal" role="dialog">
+<div class="modal modal-warning" id="measuringPointModal">
 	<div class="modal-dialog">
-		<!-- Modal content-->
 		<div class="modal-content">
-			<div class="modal-header" style="background: #00a65a;">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span></button>
 			</div>
-			<div class="modal-body" style="text-align: center;">
-				<a id="milestone-url" href="" target="_balnk">
-					<img src="" id="milestone-thumbnail" class="img-thumbnail box-shadow" style="zoom: 50%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-				</a>
-				<p id="milestone-pagetitle" class="text-success margin-top25"></p>
+			<div class="modal-body">
+				<p class="modal-message">Bạn có chắc chắn muốn xóa điểm đo này không?</p>
 			</div>
-			<div class="modal-footer" style="text-align: center; background: #E6E9ED">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">
-					<span><i class="fa fa-close"></i></span>
-					閉じる
-				</button>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Hủy</button>
+				<button type="button" class="btn btn-outline modal-submit">Xóa</button>
 			</div>
 		</div>
+		<!-- /.modal-content -->
 	</div>
+	<!-- /.modal-dialog -->
 </div>
-<?php //echo Asset::js('style.js'); ?>
+<!-- /.modal -->
+<?php echo Asset::js('app/measuring_point.js'); ?>

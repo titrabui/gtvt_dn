@@ -228,6 +228,26 @@ class Controller_Projects extends Controller_Base {
 	}
 
 	/**
+	 * The delete action.
+	 *
+	 * @access  public
+	 * @return  void
+	 */
+	public function action_delete($id = null)
+	{
+		is_null($id) and \Response::redirect('admin/projects');
+
+		if ( ! $project = \Model_Project::find($id))
+		{
+			$this->redirect_to_error_page(array('message' => 'Không tồn tại dự án #'.$id));
+		}
+
+		$project->delete() or $this->redirect_to_error_page(array('message' => 'Không thể xóa dự án này'));
+		\Response::redirect('admin/projects');
+	}
+
+
+	/**
 	 * The function for redirecting to error page
 	 *
 	 * @access  private

@@ -53,4 +53,11 @@ class Model_Measuring_Point extends \Orm\Model
 
 	protected static $_table_name = 'measuring_points';
 
+	protected static $_has_many = array('measuring_values' => array(
+		'model_to'       => 'Model_Measuring_Value',
+		'key_from'       => 'id',
+		'key_to'         => 'measuring_point_id',
+		//'cascade_save'   => true,
+		'cascade_delete' => true,
+	));
 }
