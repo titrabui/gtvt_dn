@@ -1,6 +1,7 @@
 <?php
 
 namespace Admin;
+//require_once (APPPATH.'vendor'.DS.'excel'.DS.'export.php');
 
 class Controller_Measuring_Values extends Controller_Base {
 
@@ -134,6 +135,17 @@ class Controller_Measuring_Values extends Controller_Base {
 
 		$measuring_value->delete() or $this->redirect_to_error_page(array('message' => 'Không thể xóa giá trị đo này'));
 		\Response::redirect('admin/measuring_values/view/'.$measuring_point_id);
+	}
+
+	/**
+	 * The excel report export action.
+	 *
+	 * @access  public
+	 * @return  void
+	 */
+	public function action_report($id = null)
+	{
+
 	}
 
 	/**
