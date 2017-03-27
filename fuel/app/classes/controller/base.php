@@ -30,7 +30,8 @@ class Controller_Base extends \Fuel\Core\Controller_Template
 		}
 
 		// Set a global variable so views can use it
-		View::set_global('current_user', $this->current_user);
+		// View::set_global('current_user', $this->current_user);
+		Session::set('current_user', $this->current_user);
 		View::set_global('current_userprofile', $this->userprofile);
 
 /*		if ( ! $this->is_restful())

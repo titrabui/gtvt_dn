@@ -9,6 +9,7 @@
 			<div class="box-body">
 				<div class="row">
 					<div class="col-lg-2 col-md-6">
+					<?php if (count($measuring_values) > 0) { ?>
 						<?php echo Form::open(array(
 							'name'   => 'monthform',
 							'method' => 'get',
@@ -17,11 +18,12 @@
 						)); ?>
 						<?php echo Form::select('month_selected', $month_selected, $measuring_months, array('class' => 'form-control month-select')); ?>
 						<?php echo Form::close(); ?>
+					<?php } ?>
 					</div> <!-- col-lg-6 col-md-6 /-->
 					<div class="col-lg-10 col-md-6">
 						<div class="text-right">
 							<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_points/view/'.$measuring_points['project_id']); ?>">
-								<i class="fa fa-arrow-left"></i>
+								<i class="fa fa-backward"></i>
 								<span>QUAY LẠI</span>
 							</a>
 							<?php if (count($measuring_values) > 0) { ?>
@@ -40,6 +42,7 @@
 					<table class="table table-hover">
 						<thead>
 							<tr class="tbl-header">
+								<th></th>
 								<th class="text-center">NO</th>
 								<th>Ngày</th>
 								<th>Thời gian</th>
@@ -48,7 +51,6 @@
 								<th class="text-center">Nhiệt độ<br>bên ngoài (&#8451;)</th>
 								<th class="text-center">Nhiệt độ<br>vị trí 1 dưới kết cấu (&#8451;)</th>
 								<th class="text-center">Nhiệt độ<br>vị trí 2 dưới kết cấu (&#8451;)</th>
-								<th class="edit-route"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -62,6 +64,12 @@
 									$weather_current = $weather[0];
 								} ?>
 								<tr>
+									<td>
+										<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#measuringValueModal" data-whatever="<?php echo Uri::create("admin/measuring_values/delete/".$onecase['id'].'?measuring_point='.$onecase['measuring_point_id']).','.str_replace(',', '', $measuring_points['name']).','.Date::forge($onecase['created_at'])->format("%d - %m - %Y").','.Date::forge($onecase['created_at'])->format("%H : %M : %S"); ?>">
+											<i class="fa fa-trash"></i>
+											<span>Xóa</span>
+										</button>
+									</td>
 									<td class="text-center"><?php echo $no_counter++; ?></td>
 									<td><?php echo Date::forge($onecase['created_at'])->format("%d - %m - %Y"); ?></td>
 									<td><?php echo Date::forge($onecase['created_at'])->format("%H : %M : %S"); ?></td>
@@ -70,12 +78,6 @@
 									<td class="text-center"><?php echo $onecase['value1']; ?></td>
 									<td class="text-center"><?php echo $onecase['value2']; ?></td>
 									<td class="text-center"><?php echo $onecase['value3']; ?></td>
-									<td class="edit-route pull-right">
-										<a class="btn btn-sm btn-danger" href="#">
-											<i class="fa fa-trash"></i>
-											<span>Xóa</span>
-										</a>
-									</td>
 								</tr>
 							<?php } ?>
 						</tbody>
@@ -90,33 +92,25 @@
 	</div>
 </div>
 
-
 <!-- Modal -->
-<div class="modal fade" id="milestone-modal" role="dialog">
+<div class="modal modal-warning" id="measuringValueModal">
 	<div class="modal-dialog">
-		<!-- Modal content-->
 		<div class="modal-content">
-			<div class="modal-header" style="background: #00a65a;">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span></button>
 			</div>
-			<div class="modal-body" style="text-align: center;">
-				<a id="milestone-url" href="" target="_balnk">
-					<img src="" id="milestone-thumbnail" class="img-thumbnail box-shadow" style="zoom: 50%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-				</a>
-				<p id="milestone-pagetitle" class="text-success margin-top25"></p>
+			<div class="modal-body">
+				<p class="modal-message">Bạn có chắc chắn muốn xóa giá trị đo này không?</p>
 			</div>
-			<div class="modal-footer" style="text-align: center; background: #E6E9ED">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">
-					<span><i class="fa fa-close"></i></span>
-					閉じる
-				</button>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Hủy</button>
+				<button type="button" class="btn btn-outline modal-submit">Xóa</button>
 			</div>
 		</div>
+		<!-- /.modal-content -->
 	</div>
+	<!-- /.modal-dialog -->
 </div>
-<script type="text/javascript">
-	$( ".month-select" ).change(function() {
-		$( ".month-form" ).submit();
-	});
-</script>
-<?php //echo Asset::js('style.js'); ?>
+<!-- /.modal -->
+<?php echo Asset::js('app/measuring_value.js'); ?>

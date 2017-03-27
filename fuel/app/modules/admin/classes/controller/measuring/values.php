@@ -18,8 +18,8 @@ class Controller_Measuring_Values extends Controller_Base {
 	 */
 	public function action_view($id = null)
 	{
-/*		try
-		{*/
+		try
+		{
 			is_null($id) and \Response::redirect('admin/projects');
 
 			if ( ! $measuring_points = \Model_Measuring_Point::find($id))
@@ -104,11 +104,36 @@ class Controller_Measuring_Values extends Controller_Base {
 			$data['pagination'] = $pagination;
 
 			$this->template->content = \View::forge('measuring_values/view', $data);
-/*		}
+		}
 		catch (\Exception $e)
 		{
 			$this->redirect_to_error_page($e->getMessage());
-		}*/
+		}
+	}
+
+	/**
+	 * The delete action.
+	 *
+	 * @access  public
+	 * @return  void
+	 */
+	public function action_delete($id = null)
+	{
+		( ! \Input::get('measuring_point')) and \Response::redirect('admin/projects');
+
+		if ( ! is_null($id) && ! $measuring_value = \Model_Measuring_Value::find($id))
+		{
+			$this->redirect_to_error_page(array('message' => 'Không tồn tại giá trị đo #'.$id));
+		}
+
+		$measuring_point_id = \Input::get('measuring_point');
+		if ( ! $measuring_point = \Model_Measuring_Point::find($measuring_point_id))
+		{
+			$this->redirect_to_error_page(array('message' => 'Không tồn tại điểm đo #'.$measuring_point_id));
+		}
+
+		$measuring_value->delete() or $this->redirect_to_error_page(array('message' => 'Không thể xóa giá trị đo này'));
+		\Response::redirect('admin/measuring_values/view/'.$measuring_point_id);
 	}
 
 	/**
@@ -119,12 +144,9 @@ class Controller_Measuring_Values extends Controller_Base {
 	 */
 	private function redirect_to_error_page($message = array())
 	{
-		// remove milestone session
-		\Session::get('milestone') and \Session::delete('milestone');
-
 		// redirect to error page
 		\Session::set_flash('error', $message);
-		\Response::redirect('manager/error');
+		\Response::redirect('admin/error');
 	}
 }
 

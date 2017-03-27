@@ -9,7 +9,7 @@
 			<div class="box-body">
 				<div class="text-right">
 					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/projects'); ?>">
-						<i class="fa fa-arrow-left"></i>
+						<i class="fa fa-backward"></i>
 						<span>QUAY LẠI</span>
 					</a>
 					<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_points/register?project='.$project_id); ?>">
@@ -77,7 +77,6 @@
 		</div>
 	</div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal modal-warning" id="measuringPointModal">

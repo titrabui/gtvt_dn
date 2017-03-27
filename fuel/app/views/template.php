@@ -59,7 +59,17 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<span class="hidden-xs">
 							<i class="fa fa-user"></i>
-							<?php echo \View::$global_data['current_user']['username'];?>
+							<?php
+								if (\Session::get('current_user'))
+								{
+									$current_user = \Session::get('current_user');
+									echo $current_user['username'];
+								}
+								else
+								{
+									echo 'Anonymous';
+								}
+							?>
 						</span>
 					</a>
 				</li>
@@ -104,10 +114,11 @@
 	<!-- /.content-wrapper -->
 	<footer class="main-footer">
 		<div class="pull-right hidden-xs">
-			<b>Version</b> 2.3.8
+			<b>Version</b> 1.0
 		</div>
-		<strong>Copyright &copy; 2017 <a href="http://ktlv.com">KTLV</a>.</strong> All rights
-		reserved.
+		<!--<strong>Copyright &copy; 2017 <a href="http://ktlv.com.vn">KTLV</a>.</strong> All rights
+		reserved.-->
+		<strong>Designed by <a href="http://ktlv.com.vn">KTLV</a>.</strong>
 	</footer>
 </div>
 <!-- ./wrapper -->
