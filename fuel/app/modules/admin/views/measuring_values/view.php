@@ -8,26 +8,29 @@
 			</div>
 			<div class="box-body">
 				<div class="row">
-					<div class="col-lg-2 col-md-6">
-					<?php if (count($measuring_values) > 0) { ?>
-						<?php echo Form::open(array(
-							'name'   => 'monthform',
-							'method' => 'get',
-							'action' => 'admin/measuring_values/view/'.$measuring_points['project_id'],
-							'class'  => 'form-group month-form'
-						)); ?>
-						<?php echo Form::select('month_selected', $month_selected, $measuring_months, array('class' => 'form-control month-select')); ?>
-						<?php echo Form::close(); ?>
-					<?php } ?>
+					<div class="col-lg-6 col-md-6">
+						<?php if (count($measuring_values) > 0) { ?>
+							<?php echo Form::open(array(
+								'name'   => 'monthform',
+								'method' => 'get',
+								'action' => 'admin/measuring_values/view/'.$measuring_points['project_id'],
+								'class'  => 'form-group month-form'
+							)); ?>
+							<div class="col-lg-3 col-md-3"><label class="control-common-label">Xem theo tháng</label></div>
+							<div class="col-lg-4 col-md-4">
+								<?php echo Form::select('month_selected', $month_selected, $measuring_months, array('class' => 'form-control month-select')); ?>
+							</div>
+							<?php echo Form::close(); ?>
+						<?php } ?>
 					</div> <!-- col-lg-6 col-md-6 /-->
-					<div class="col-lg-10 col-md-6">
+					<div class="col-lg-6 col-md-6">
 						<div class="text-right">
 							<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_points/view/'.$measuring_points['project_id']); ?>">
 								<i class="fa fa-backward"></i>
 								<span>QUAY LẠI</span>
 							</a>
 							<?php if (count($measuring_values) > 0) { ?>
-								<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_values/report/1'); ?>">
+								<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_values/report/1?month_selected='.$month_selected); ?>">
 									<i class="fa fa-download"></i>
 									<span>XUẤT DỮ LIỆU</span>
 								</a>
@@ -43,7 +46,7 @@
 						<thead>
 							<tr class="tbl-header">
 								<th></th>
-								<th class="text-center">NO</th>
+								<th class="text-center">STT</th>
 								<th>Ngày</th>
 								<th>Thời gian</th>
 								<th class="text-center">Tổng thời gian<br>khảo sát (ngày)</th>

@@ -42,7 +42,7 @@
 		</div>
 		<div class="col-lg-4 col-md-6">
 			<!-- Khoa cau duong -->
-			<?php echo Asset::img('logo-cauduongbkdn.JPEG', array('class' => 'investor-logo')); ?>
+			<?php echo Asset::img('logo-cauduongbkdn.jpeg', array('class' => 'investor-logo')); ?>
 			<!-- BK-ITEC -->
 			<?php echo Asset::img('BK-ITEC_Logo.png', array('class' => 'investor-logo')); ?>
 			<!-- CEI -->

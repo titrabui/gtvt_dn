@@ -20,7 +20,7 @@
 					<table class="table table-hover">
 						<thead>
 							<tr class="tbl-header">
-								<th class="no">NO</th>
+								<th class="text-center">STT</th>
 								<th>Dự án</th>
 								<th>Địa điểm</th>
 								<th>Chủ đầu tư</th>
@@ -31,7 +31,7 @@
 						<tbody>
 							<?php foreach ($projects as $onecase) { ?>
 								<tr>
-									<td class="no"><?php echo $no_counter++; ?></td>
+									<td class="text-center"><?php echo $no_counter++; ?></td>
 									<td><?php echo Str::truncate($onecase['name'], 80); ?></td>
 									<td><?php echo Str::truncate($onecase['location'], 80); ?></td>
 									<td><?php echo Str::truncate($onecase['investor'], 80); ?></td>

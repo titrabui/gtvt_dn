@@ -35,53 +35,73 @@ require_once dirname(__FILE__) . '/../excel/PHPExcel.php';
 
 Class Excel {
 
-	public static function export()
+	public static function export($measuring_values, $month_selected)
 	{
-		// Create new PHPExcel object
-		$objPHPExcel = new PHPExcel();
+		try
+		{
+			// Create new PHPExcel object
+			$objPHPExcel = new PHPExcel();
 
-		// Set document properties
-		$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-									 ->setLastModifiedBy("Maarten Balliauw")
-									 ->setTitle("Office 2007 XLSX Test Document")
-									 ->setSubject("Office 2007 XLSX Test Document")
-									 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-									 ->setKeywords("office 2007 openxml php")
-									 ->setCategory("Test result file");
+			// Set document properties
+			$objPHPExcel->getProperties()
+				->setCreator("Sở giao thông vận tải Đà Nẵng")
+				->setLastModifiedBy("Sở giao thông vận tải Đà Nẵng")
+				->setTitle("Báo cáo giá trị đo");
 
-		// Add some data
-		$objPHPExcel->setActiveSheetIndex(0)
-					->setCellValue('A1', 'Hello')
-					->setCellValue('B2', 'world!')
-					->setCellValue('C1', 'Hello')
-					->setCellValue('D2', 'world!');
+			// Set title header
+			$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue('A1', 'STT')
+				->setCellValue('B1', 'Ngày')
+				->setCellValue('C1', 'Thời gian')
+				->setCellValue('D1', 'Tổng thời gian khảo sát (ngày)')
+				->setCellValue('E1', 'Nhiệt độ bên ngoài (℃)')
+				->setCellValue('F1', 'Nhiệt độ vị trí 1 dưới kết cấu (℃)')
+				->setCellValue('G1', 'Nhiệt độ vị trí 2 dưới kết cấu (℃)');
 
-		// Miscellaneous glyphs, UTF-8
-		$objPHPExcel->setActiveSheetIndex(0)
-					->setCellValue('A4', 'Miscellaneous glyphs')
-					->setCellValue('A5', 'éàèùâêîôûëïüÿäöüç');
+			// Add excel data
+			$index = 1;
+			$row = 2;
+			foreach ($measuring_values as $item)
+			{
+				$objPHPExcel->setActiveSheetIndex(0)
+					->setCellValue('A'.$row, $index++)
+					->setCellValue('B'.$row, Date::forge($item['created_at'])->format("%d - %m - %Y"))
+					->setCellValue('C'.$row, Date::forge($item['created_at'])->format("%H : %M : %S"))
+					->setCellValue('D'.$row, $item['total_time_surveying'])
+					->setCellValue('E'.$row, $item['value1'])
+					->setCellValue('F'.$row, $item['value2'])
+					->setCellValue('G'.$row, $item['value3']);
+				$row++;
+			}
 
-		// Rename worksheet
-		$objPHPExcel->getActiveSheet()->setTitle('Simple');
+			// Rename worksheet
+			$objPHPExcel->getActiveSheet()->setTitle($month_selected);
 
-		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
-		$objPHPExcel->setActiveSheetIndex(0);
+			// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+			$objPHPExcel->setActiveSheetIndex(0);
 
-		// Redirect output to a client’s web browser (Excel2007)
-		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment;filename="01simple.xlsx"');
-		header('Cache-Control: max-age=0');
+			// Redirect output to a client’s web browser (Excel2007)
+			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+			header('Content-Disposition: attachment;filename="Báo cáo tháng '.$month_selected.'".xlsx"');
+			header('Cache-Control: max-age=0');
 
-		// If you're serving to IE 9, then the following may be needed
-		header('Cache-Control: max-age=1');
+			// If you're serving to IE 9, then the following may be needed
+			header('Cache-Control: max-age=1');
 
-		// If you're serving to IE over SSL, then the following may be needed
-		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-		header ('Pragma: public'); // HTTP/1.0
+			// If you're serving to IE over SSL, then the following may be needed
+			header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+			header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+			header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+			header ('Pragma: public'); // HTTP/1.0
 
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-		$objWriter->save('php://output');
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+			$objWriter->save('php://output');
+		}
+		catch (\Exception $e)
+		{
+			// redirect to error page
+			Session::set_flash('error', array('message' => $e->getMessage()));
+			Response::redirect('admin/error');
+		}
 	}
 }

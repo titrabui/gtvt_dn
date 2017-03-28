@@ -29,7 +29,7 @@
 	<div class="col-lg-8 col-md-8 col-md-offset-2 box-layout">
 		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
-				<span><i class="fa fa-tasks"></i></span>
+				<span><i class="fa fa-hdd-o"></i></span>
 				XÁC NHẬN ĐIỂM ĐO
 			</div>
 			<div class="box-body margin-left20">

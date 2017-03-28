@@ -9,7 +9,7 @@
 	<!-- Bootstrap 3.3.6 -->
 	<?php echo Asset::css('bootstrap/bootstrap.min.css'); ?>
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Theme style -->
@@ -58,7 +58,7 @@
 				<li class="dropdown user user-menu">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<span class="hidden-xs">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-user-circle"></i>
 							<?php
 								if (\Session::get('current_user'))
 								{

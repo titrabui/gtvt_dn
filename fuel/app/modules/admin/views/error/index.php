@@ -1,7 +1,10 @@
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-md-offset-3 box-layout">
 		<div class="box box-danger box-solid">
-			<div class="box-header with-border">ERROR</div>
+			<div class="box-header with-border">
+				<span><i class="fa fa-bug"></i></span>
+				ERROR
+			</div>
 			<div class="box-body text-center">
 				<?php if (Session::get_flash('error')) {
 					$error = Session::get_flash('error');?>

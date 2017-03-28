@@ -3,7 +3,7 @@
 		<!-- small box -->
 		<div class="box box-primary box-solid">
 			<div class="box-header with-border">
-				<span><i class="fa fa-tasks"></i></span>
+				<span><i class="fa fa-map-marker"></i></span>
 				THÔNG TIN ĐIỂM ĐO
 			</div>
 			<div class="box-body">
@@ -24,7 +24,7 @@
 					<table class="table table-hover">
 						<thead>
 							<tr class="tbl-header">
-								<th class="no">NO</th>
+								<th class="text-center">STT</th>
 								<th>Điểm đo</th>
 								<th>Code</th>
 								<th>Vị trí</th>
@@ -40,7 +40,7 @@
 						<tbody>
 							<?php foreach ($measuring_points as $onecase) { ?>
 								<tr>
-									<td class="no"><?php echo $no_counter++; ?></td>
+									<td class="text-center"><?php echo $no_counter++; ?></td>
 									<td><?php echo Str::truncate($onecase['name'], 80); ?></td>
 									<td><?php echo $onecase['id']; ?></td>
 									<td><?php echo Str::truncate($onecase['location'], 80); ?></td>
