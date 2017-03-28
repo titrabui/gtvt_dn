@@ -1,7 +1,7 @@
 <?php
 
 namespace Admin;
-//require_once (APPPATH.'vendor'.DS.'excel'.DS.'export.php');
+require_once (APPPATH.'vendor'.DS.'excel'.DS.'export.php');
 
 class Controller_Measuring_Values extends Controller_Base {
 
@@ -145,7 +145,9 @@ class Controller_Measuring_Values extends Controller_Base {
 	 */
 	public function action_report($id = null)
 	{
-
+		\Excel::export();
+		
+		exit();
 	}
 
 	/**

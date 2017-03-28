@@ -27,7 +27,7 @@
 								<span>QUAY LẠI</span>
 							</a>
 							<?php if (count($measuring_values) > 0) { ?>
-								<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_values/export'); ?>">
+								<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_values/report/1'); ?>">
 									<i class="fa fa-download"></i>
 									<span>XUẤT DỮ LIỆU</span>
 								</a>
