@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<div class="row text-center">
-			<div class="col-sm-12">
+			<div class="col-xs-12">
 				<a class="web-name" href="<?php echo Uri::create('/') ?>"><b>HỆ THỐNG QUẢN LÝ<br>DỮ LIỆU NHIỆT ĐỘ BÊ TÔNG NHỰA</b></a>
 			</div>
 		</div>
