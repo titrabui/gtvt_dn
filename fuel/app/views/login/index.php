@@ -29,24 +29,28 @@
 <body class="hold-transition login-page" style="background: url('<?php echo Asset::get_file('login_bg.jpg', 'img');?>');">
 <div class="row">
 	<div class="login-logo" style="margin-top: 40px;">
-		<div class="col-lg-4 col-md-6">
-			<!-- So GTVT -->
-			<?php echo Asset::img('logo-danang.png', array('class' => 'investor-logo')); ?>
-			<!-- BkECC -->
-			<?php echo Asset::img('Bk-ecc.jpg', array('class' => 'investor-logo')); ?>
-			<!-- BKDN -->
-			<?php echo Asset::img('logo-bkdn.jpg', array('class' => 'investor-logo')); ?>
+		<div class="row">
+			<div class="col-sm-6">
+				<!-- So GTVT -->
+				<a target="_blank" href="http://www.sgtvt.danang.gov.vn"><?php echo Asset::img('logo-danang.png', array('class' => 'investor-logo')); ?></a>
+				<!-- BkECC -->
+				<a target="_blank" href="http://www.bk-ecc.com.vn"><?php echo Asset::img('Bk-ecc.jpg', array('class' => 'investor-logo')); ?></a>
+				<!-- BKDN -->
+				<a target="_blank" href="http://www.dut.udn.vn"><?php echo Asset::img('logo-bkdn.jpg', array('class' => 'investor-logo')); ?></a>
+			</div>
+			<div class="col-sm-6">
+				<!-- Khoa cau duong -->
+				<a target="_blank" href="http://cauduongbkdn.com"><?php echo Asset::img('logo-cauduongbkdn.jpeg', array('class' => 'investor-logo')); ?></a>
+				<!-- BK-ITEC -->
+				<a target="_blank" href="#"><?php echo Asset::img('BK-ITEC_Logo.png', array('class' => 'investor-logo')); ?></a>
+				<!-- CEI -->
+				<a target="_blank" href="#"><?php echo Asset::img('CEI_logo_1.png', array('class' => 'investor-logo')); ?></a>
+			</div>
 		</div>
-		<div class="col-lg-4 col-md-6">
-			<a style="color: #d2d6de" href="<?php echo Uri::create('/') ?>"><b>HỆ THỐNG QUẢN LÝ<br>DỮ LIỆU NHIỆT ĐỘ BÊ TÔNG NHỰA</b></a>
-		</div>
-		<div class="col-lg-4 col-md-6">
-			<!-- Khoa cau duong -->
-			<?php echo Asset::img('logo-cauduongbkdn.jpeg', array('class' => 'investor-logo')); ?>
-			<!-- BK-ITEC -->
-			<?php echo Asset::img('BK-ITEC_Logo.png', array('class' => 'investor-logo')); ?>
-			<!-- CEI -->
-			<?php echo Asset::img('CEI_logo_1.png', array('class' => 'investor-logo')); ?>
+		<div class="row text-center">
+			<div class="col-sm-12">
+				<a class="web-name" href="<?php echo Uri::create('/') ?>"><b>HỆ THỐNG QUẢN LÝ<br>DỮ LIỆU NHIỆT ĐỘ BÊ TÔNG NHỰA</b></a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -54,6 +58,18 @@
 	<!-- /.login-logo -->
 	<div class="login-box-body">
 		<p class="login-box-msg">ĐĂNG NHẬP HỆ THỐNG</p>
+
+		<?php
+		if (Session::get_flash('error')) {
+			$error = Session::get_flash('error'); ?>
+			<div class="row text-center">
+				<div class="col-md-12">
+					<div class="alert alert-danger alert-dismissable">
+						<?php echo $error; ?>
+					</div>
+				</div>
+			</div>
+		<?php } ?>
 
 		<form action="<?php echo \Uri::create('/login'); ?>" method="post">
 			<div class="form-group has-feedback">
@@ -65,15 +81,15 @@
 				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 			</div>
 			<div class="row">
-				<div class="col-xs-8">
-					<div class="checkbox icheck">
+				<div class="col-xs-12 col-sm-8">
+					<!--<div class="checkbox icheck">
 						<label>
 							<input type="checkbox"> Remember Me
 						</label>
-					</div>
+					</div> -->
 				</div>
 				<!-- /.col -->
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-sm-4">
 					<button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
 				</div>
 				<!-- /.col -->

@@ -44,13 +44,13 @@ class Controller_Login extends Controller_Base
 					else
 					{
 						// Set error message to view
-						$view->set('error', \Constants::$error_message['login_error']);
+						\Session::set_flash('error', \Constants::$error_message['login_error']);
 					}
 				}
 				else
 				{
 					// Set error message to view
-					$view->set('error', \Constants::$error_message['already_logged_in']);
+					\Session::set_flash('error', \Constants::$error_message['already_logged_in']);
 				}
 			}
 		}
