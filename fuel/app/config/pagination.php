@@ -75,7 +75,7 @@ return array(
 		'first-inactive-link'     => "",
 
 		'previous'                => "\n\t\t<li>{link}</li>",
-		'previous-marker'         => "&laquo;",
+		'previous-marker'         => "Trang sau",
 		'previous-link'           => "<a href=\"{uri}\" rel=\"prev\">{page}</a>",
 
 		'previous-inactive'       => "\n\t\t<li class=\"disabled\">{link}</li>",
@@ -88,7 +88,7 @@ return array(
 		'active-link'             => "<a href=\"#\">{page} <span class=\"sr-only\"></span></a>",
 
 		'next'                    => "\n\t\t<li>{link}</li>",
-		'next-marker'             => "&raquo;",
+		'next-marker'             => "Trang tới",
 		'next-link'               => "<a href=\"{uri}\" rel=\"next\">{page}</a>",
 
 		'next-inactive'           => "\n\t\t<li class=\"disabled\">{link}</li>",

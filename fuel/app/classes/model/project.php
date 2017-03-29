@@ -27,10 +27,10 @@ class Model_Project extends \Orm\Model
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
-		$val->add_field('name', 'Name', 'required|max_length[255]');
-		$val->add_field('location', 'Location', 'required|max_length[255]');
-		$val->add_field('investor', 'Investor', 'required|max_length[255]');
-		$val->add_field('note', 'Note', 'max_length[1000]');
+		$val->add_field('name', 'Tên dự án', 'required|max_length[255]');
+		$val->add_field('location', 'Đia điểm', 'required|max_length[255]');
+		$val->add_field('investor', 'Chủ đầu tư', 'required|max_length[255]');
+		$val->add_field('note', 'Ghi chú', 'max_length[1000]');
 
 		return $val;
 	}

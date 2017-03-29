@@ -48,7 +48,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-md-2 col-md-offset-1"><label class="control-common-label">Địa điểm</label></div>
+						<div class="col-md-2 col-md-offset-1"><label class="control-common-label">Vị trí</label></div>
 						<div class="col-md-8">
 							<input type="text" class="form-control" id="location" name="location" value="<?php echo Input::post('location', $location); ?>" readonly>
 						</div>

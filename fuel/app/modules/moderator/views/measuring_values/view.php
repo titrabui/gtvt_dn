@@ -1,0 +1,91 @@
+<div class="row">
+	<div class="col-lg-12 col-md-6 box-layout">
+		<!-- small box -->
+		<div class="box box-primary box-solid">
+			<div class="box-header with-border">
+				<span><i class="fa fa-tasks"></i></span>
+				ĐIỂM ĐO: <?php echo $measuring_points['name']; ?>
+			</div>
+			<div class="box-body">
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<?php if (count($measuring_values) > 0) { ?>
+							<?php echo Form::open(array(
+								'name'   => 'monthform',
+								'method' => 'get',
+								'action' => 'moderator/measuring_values/view/'.$measuring_points['project_id'],
+								'class'  => 'form-group month-form'
+							)); ?>
+							<div class="col-lg-3 col-md-3"><label class="control-common-label">Xem theo tháng</label></div>
+							<div class="col-lg-4 col-md-4">
+								<?php echo Form::select('month_selected', $month_selected, $measuring_months, array('class' => 'form-control month-select')); ?>
+							</div>
+							<?php echo Form::close(); ?>
+						<?php } ?>
+					</div> <!-- col-lg-6 col-md-6 /-->
+					<div class="col-lg-6 col-md-6">
+						<div class="text-right">
+							<a class="btn btn-md btn-primary" href="<?php echo Uri::create('moderator/measuring_points/view/'.$measuring_points['project_id']); ?>">
+								<i class="fa fa-backward"></i>
+								<span>QUAY LẠI</span>
+							</a>
+							<?php if (count($measuring_values) > 0) { ?>
+								<a class="btn btn-md btn-primary" href="<?php echo Uri::create('moderator/measuring_values/report/1?month_selected='.$month_selected); ?>">
+									<i class="fa fa-download"></i>
+									<span>XUẤT DỮ LIỆU</span>
+								</a>
+							<?php } ?>
+						</div>
+					</div> <!-- col-lg-6 col-md-6 /-->
+				</div> <!-- row /-->
+				<hr>
+				<div class="table-responsive">
+					<?php $pagina_counter = Pagination::instance('measuring_values_pagination'); ?>
+					<?php $no_counter = (($pagina_counter->current_page - 1) * $pagina_counter->per_page) + 1; ?>
+					<table class="table table-hover">
+						<thead>
+							<tr class="tbl-header">
+								<th class="text-center">STT</th>
+								<th>Ngày</th>
+								<th>Thời gian</th>
+								<th class="text-center">Tổng thời gian<br>khảo sát (ngày)</th>
+								<th class="text-center">Thời tiết</th>
+								<th class="text-center">Nhiệt độ<br>bên ngoài (&#8451;)</th>
+								<th class="text-center">Nhiệt độ<br>vị trí 1 dưới kết cấu (&#8451;)</th>
+								<th class="text-center">Nhiệt độ<br>vị trí 2 dưới kết cấu (&#8451;)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($measuring_values as $onecase) { 
+								$weather = explode(',', $onecase['weather']);
+								$weather_icon = '';
+								$weather_current = '';
+								if (isset($weather[1]))
+								{
+									$weather_icon = Asset::img('accuweather_icons/'.$weather[1].'.png');
+									$weather_current = $weather[0];
+								} ?>
+								<tr>
+									<td class="text-center"><?php echo $no_counter++; ?></td>
+									<td><?php echo Date::forge($onecase['created_at'])->format("%d - %m - %Y"); ?></td>
+									<td><?php echo Date::forge($onecase['created_at'])->format("%H : %M : %S"); ?></td>
+									<td class="text-center"><?php echo $onecase['total_time_surveying']; ?></td>
+									<td class="text-center"><?php echo $weather_icon; echo $weather_current;?></td>
+									<td class="text-center"><?php echo $onecase['value1']; ?></td>
+									<td class="text-center"><?php echo $onecase['value2']; ?></td>
+									<td class="text-center"><?php echo $onecase['value3']; ?></td>
+								</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				</div> <!-- table-responsive /-->
+				<?php if (count($measuring_values) == 0) { ?>
+					<div class="row text-center">Không có dữ liệu</div>
+				<?php } ?>
+				<div class="row text-center"><?php echo html_entity_decode($pagination); ?></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php echo Asset::js('app/measuring_value.js'); ?>

@@ -2,17 +2,17 @@
 
 	class Constants
 	{
-		public static $site_title = '静岡市パノラマ写真システム';
+		public static $site_title = '';
 
 		public static $page_title = array(
-			'normal' => 'サービスメニュー',
-			'login' => 'ログイン',
-			'mainmenu' => 'メインメニュー',
-			'photoedit' => '写真編集',
-			'photolist' => '登録一覧リスト',
-			'photomap' => '登録地図',
-			'changemail' => 'メールアドレス変更',
-			'changepass' => 'パスワード変更',
+			'normal' => '',
+			'login' => 'Đăng nhập',
+			'mainmenu' => '',
+			'photoedit' => '',
+			'photolist' => '',
+			'photomap' => '',
+			'changemail' => '',
+			'changepass' => '',
 		);
 
 		public static $error_message = array(

@@ -39,13 +39,13 @@ class Model_Measuring_Point extends \Orm\Model
 
 		if ($factory == 'Measuring_Point_Page')
 		{
-			$val->add_field('name', 'Name', 'required|max_length[256]');
-			$val->add_field('location', 'Location', 'required|max_length[256]');
-			$val->add_field('x_coordinate', 'X_coordinate', 'required|valid_string[numeric,dots]');
-			$val->add_field('y_coordinate', 'Y_coordinate', 'required|valid_string[numeric,dots]');
-			$val->add_field('road_height', 'Road_height', 'required|valid_string[numeric,dots]');
+			$val->add_field('name', 'Tên điểm đo', 'required|max_length[256]');
+			$val->add_field('location', 'Vị trí', 'required|max_length[256]');
+			$val->add_field('x_coordinate', 'Tọa độ X', 'required|valid_string[numeric,dots]');
+			$val->add_field('y_coordinate', 'Tọa độ Y', 'required|valid_string[numeric,dots]');
+			$val->add_field('road_height', 'Độ cao đường', 'required|valid_string[numeric,dots]');
 			$val->add_field('is_request', 'Is_request', 'valid_string[numeric]|numeric_between[0,1]');
-			$val->add_field('note', 'Note', 'max_length[1000]');
+			$val->add_field('note', 'Ghi chú', 'max_length[1000]');
 		}
 
 		return $val;

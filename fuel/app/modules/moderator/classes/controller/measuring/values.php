@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin;
+namespace Moderator;
 require_once (APPPATH.'vendor'.DS.'excel'.DS.'export.php');
 
 class Controller_Measuring_Values extends Controller_Base {
@@ -21,12 +21,12 @@ class Controller_Measuring_Values extends Controller_Base {
 	{
 		try
 		{
-			is_null($id) and \Response::redirect('admin/projects');
+			is_null($id) and \Response::redirect('moderator/projects');
 
 			if ( ! $measuring_points = \Model_Measuring_Point::find($id))
 			{
 				\Session::set_flash('error', 'Không tồn tại điểm đo #'.$id);
-				\Response::redirect('admin/error');
+				\Response::redirect('moderator/error');
 			}
 
 			$data['measuring_points'] = $measuring_points;
@@ -69,7 +69,7 @@ class Controller_Measuring_Values extends Controller_Base {
 			// pagination config
 			$config = array(
 				'name'           => 'bootstrap3',
-				'pagination_url' => \Uri::create('admin/measuring_values/view/'.$id.'?month_selected='.$month_selected),
+				'pagination_url' => \Uri::create('moderator/measuring_values/view/'.$id.'?month_selected='.$month_selected),
 				'total_items'    => \Model_Measuring_Value::query()
 					->where('measuring_point_id', $id)
 					->and_where_open()
@@ -113,31 +113,6 @@ class Controller_Measuring_Values extends Controller_Base {
 	}
 
 	/**
-	 * The delete action.
-	 *
-	 * @access  public
-	 * @return  void
-	 */
-	public function action_delete($id = null)
-	{
-		( ! \Input::get('measuring_point')) and \Response::redirect('admin/projects');
-
-		if ( ! is_null($id) && ! $measuring_value = \Model_Measuring_Value::find($id))
-		{
-			$this->redirect_to_error_page(array('message' => 'Không tồn tại giá trị đo #'.$id));
-		}
-
-		$measuring_point_id = \Input::get('measuring_point');
-		if ( ! $measuring_point = \Model_Measuring_Point::find($measuring_point_id))
-		{
-			$this->redirect_to_error_page(array('message' => 'Không tồn tại điểm đo #'.$measuring_point_id));
-		}
-
-		$measuring_value->delete() or $this->redirect_to_error_page(array('message' => 'Không thể xóa giá trị đo này'));
-		\Response::redirect('admin/measuring_values/view/'.$measuring_point_id);
-	}
-
-	/**
 	 * The excel report export action.
 	 *
 	 * @access  public
@@ -147,12 +122,12 @@ class Controller_Measuring_Values extends Controller_Base {
 	{
 		try
 		{
-			is_null($id) and \Response::redirect('admin/projects');
+			is_null($id) and \Response::redirect('moderator/projects');
 
 			if ( ! $measuring_points = \Model_Measuring_Point::find($id))
 			{
 				\Session::set_flash('error', 'Không tồn tại điểm đo #'.$id);
-				\Response::redirect('admin/error');
+				\Response::redirect('moderator/error');
 			}
 
 			$data['measuring_points'] = $measuring_points;
@@ -224,7 +199,7 @@ class Controller_Measuring_Values extends Controller_Base {
 	{
 		// redirect to error page
 		\Session::set_flash('error', $message);
-		\Response::redirect('admin/error');
+		\Response::redirect('moderator/error');
 	}
 }
 
