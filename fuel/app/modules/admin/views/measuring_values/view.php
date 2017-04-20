@@ -13,7 +13,7 @@
 							<?php echo Form::open(array(
 								'name'   => 'monthform',
 								'method' => 'get',
-								'action' => 'admin/measuring_values/view/'.$measuring_points['project_id'],
+								'action' => 'admin/measuring_values/view/'.$measuring_points['id'],
 								'class'  => 'form-group month-form'
 							)); ?>
 							<div class="col-lg-3 col-md-3"><label class="control-common-label">Xem theo tháng</label></div>
@@ -30,7 +30,7 @@
 								<span>QUAY LẠI</span>
 							</a>
 							<?php if (count($measuring_values) > 0) { ?>
-								<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_values/report/1?month_selected='.$month_selected); ?>">
+								<a class="btn btn-md btn-primary" href="<?php echo Uri::create('admin/measuring_values/report/'.$measuring_points['id'].'?month_selected='.$month_selected); ?>">
 									<i class="fa fa-download"></i>
 									<span>XUẤT DỮ LIỆU</span>
 								</a>
