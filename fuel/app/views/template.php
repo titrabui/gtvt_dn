@@ -133,6 +133,8 @@
 <?php echo Asset::js('plugins/daterangepicker/daterangepicker.js'); ?>
 <!-- datepicker -->
 <?php echo Asset::js('plugins/datepicker/bootstrap-datepicker.js'); ?>
+<!-- ChartJS 1.0.1 -->
+<?php echo Asset::js('plugins/chartjs/Chart.min.js'); ?>
 <!-- FastClick -->
 <?php echo Asset::js('plugins/fastclick/fastclick.js'); ?>
 <!-- AdminLTE App -->
