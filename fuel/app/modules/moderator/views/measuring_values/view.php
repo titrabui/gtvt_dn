@@ -67,8 +67,8 @@
 								} ?>
 								<tr>
 									<td class="text-center"><?php echo $no_counter++; ?></td>
-									<td><?php echo Date::forge($onecase['created_at'])->format("%d - %m - %Y"); ?></td>
-									<td><?php echo Date::forge($onecase['created_at'])->format("%H : %M : %S"); ?></td>
+									<td><?php echo Date::forge($onecase['measuring_time'])->format("%d - %m - %Y"); ?></td>
+									<td><?php echo Date::forge($onecase['measuring_time'])->format("%H : %M : %S"); ?></td>
 									<td class="text-center"><?php echo $onecase['total_time_surveying']; ?></td>
 									<td class="text-center"><?php echo $weather_icon; echo $weather_current;?></td>
 									<td class="text-center"><?php echo $onecase['value1']; ?></td>

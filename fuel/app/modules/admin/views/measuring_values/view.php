@@ -68,14 +68,14 @@
 								} ?>
 								<tr>
 									<td>
-										<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#measuringValueModal" data-whatever="<?php echo Uri::create("admin/measuring_values/delete/".$onecase['id'].'?measuring_point='.$onecase['measuring_point_id']).','.str_replace(',', '', $measuring_points['name']).','.Date::forge($onecase['created_at'])->format("%d - %m - %Y").','.Date::forge($onecase['created_at'])->format("%H : %M : %S"); ?>">
+										<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#measuringValueModal" data-whatever="<?php echo Uri::create("admin/measuring_values/delete/".$onecase['id'].'?measuring_point='.$onecase['measuring_point_id']).','.str_replace(',', '', $measuring_points['name']).','.Date::forge($onecase['measuring_time'])->format("%d - %m - %Y").','.Date::forge($onecase['measuring_time'])->format("%H : %M : %S"); ?>">
 											<i class="fa fa-trash"></i>
 											<span>Xóa</span>
 										</button>
 									</td>
 									<td class="text-center"><?php echo $no_counter++; ?></td>
-									<td><?php echo Date::forge($onecase['created_at'])->format("%d - %m - %Y"); ?></td>
-									<td><?php echo Date::forge($onecase['created_at'])->format("%H : %M : %S"); ?></td>
+									<td><?php echo Date::forge($onecase['measuring_time'])->format("%d - %m - %Y"); ?></td>
+									<td><?php echo Date::forge($onecase['measuring_time'])->format("%H : %M : %S"); ?></td>
 									<td class="text-center"><?php echo $onecase['total_time_surveying']; ?></td>
 									<td class="text-center"><?php echo $weather_icon; echo $weather_current;?></td>
 									<td class="text-center"><?php echo $onecase['value1']; ?></td>

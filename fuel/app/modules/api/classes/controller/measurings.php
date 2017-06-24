@@ -46,14 +46,17 @@ class Controller_Measurings extends \Controller_Rest
 				$measuring_point->battery = \Input::post('battery');
 
 				// Calculate surveying total time
-				$last_measuring = \Model_Measuring_Value::find('last', array('order_by' => array('id' => 'desc')));
+				$last_measuring = \Model_Measuring_Value::find('last',array(
+					'where' => array('measuring_point_id' => $measuring_point_id),
+					'order_by' => array('measuring_time' => 'asc')
+				));
 
 				$total_time_surveying = 1;
 				if (isset($last_measuring['id']))
 				{
-					$current_day = new \DateTime("now");
-					$last_day = new \DateTime(\Date::forge($last_measuring['created_at'])->format("%m/%d/%Y"));
-					$interval = $current_day->diff($last_day);
+					$post_day = new \DateTime(\Input::post('date'));
+					$last_day = new \DateTime(\Date::forge($last_measuring['measuring_time'])->format("%Y-%m-%d"));
+					$interval = $post_day->diff($last_day);
 
 					$total_time_surveying  = $interval->days + $last_measuring['total_time_surveying'];
 				}
@@ -66,6 +69,7 @@ class Controller_Measurings extends \Controller_Rest
 					'value1'               => \Input::post('value1'),
 					'value2'               => \Input::post('value2'),
 					'value3'               => \Input::post('value3'),
+					'measuring_time'       => strtotime(\Input::post('date').'T'.\Input::post('time'))
 				));
 
 				if ($measuring_value and $measuring_value->save() and $measuring_point->save())
