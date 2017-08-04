@@ -33,17 +33,17 @@ class Controller_Measuring_Values extends Controller_Base {
 
 			// Get all measuring month
 			$measuring_created = \Model_Measuring_Value::query()
-				->select(array('created_at'))
+				->select(array('measuring_time'))
 				->where('measuring_point_id', $id)
-				->order_by('created_at', 'desc')
+				->order_by('measuring_time', 'desc')
 				->from_cache(false)
 				->get();
 
 			$measuring_months = array();
 			foreach ($measuring_created as $item)
 			{
-				$measuring_months[\Date::forge($item['created_at'])->format("%m/%Y")]
-					= \Date::forge($item['created_at'])->format("%m/%Y");
+				$measuring_months[\Date::forge($item['measuring_time'])->format("%m/%Y")]
+					= \Date::forge($item['measuring_time'])->format("%m/%Y");
 			}
 
 			$data['measuring_months'] = $measuring_months;
@@ -73,12 +73,12 @@ class Controller_Measuring_Values extends Controller_Base {
 				'total_items'    => \Model_Measuring_Value::query()
 					->where('measuring_point_id', $id)
 					->and_where_open()
-						->where(\DB::expr('MONTH(FROM_UNIXTIME(created_at))'), $array_temp[0])
+						->where(\DB::expr('MONTH(FROM_UNIXTIME(measuring_time))'), $array_temp[0])
 					->and_where_close()
 					->and_where_open()
-						->where(\DB::expr('YEAR(FROM_UNIXTIME(created_at))'), $array_temp[1])
+						->where(\DB::expr('YEAR(FROM_UNIXTIME(measuring_time))'), $array_temp[1])
 					->and_where_close()
-					->order_by('created_at', 'desc')
+					->order_by('measuring_time', 'desc')
 					->from_cache(false)->count(),
 				'num_link'       => '5',
 				'per_page'       => '20',
@@ -91,14 +91,14 @@ class Controller_Measuring_Values extends Controller_Base {
 			$data['measuring_values'] = \Model_Measuring_Value::query()
 				->where('measuring_point_id', $id)
 				->and_where_open()
-					->where(\DB::expr('MONTH(FROM_UNIXTIME(created_at))'), $array_temp[0])
+					->where(\DB::expr('MONTH(FROM_UNIXTIME(measuring_time))'), $array_temp[0])
 				->and_where_close()
 				->and_where_open()
-					->where(\DB::expr('YEAR(FROM_UNIXTIME(created_at))'), $array_temp[1])
+					->where(\DB::expr('YEAR(FROM_UNIXTIME(measuring_time))'), $array_temp[1])
 				->and_where_close()
 				->rows_offset($pagination->offset)
 				->rows_limit($pagination->per_page)
-				->order_by('created_at', 'desc')
+				->order_by('measuring_time', 'desc')
 				->from_cache(false)
 				->get();
 
@@ -134,17 +134,17 @@ class Controller_Measuring_Values extends Controller_Base {
 
 			// Get all measuring month
 			$measuring_created = \Model_Measuring_Value::query()
-				->select(array('created_at'))
+				->select(array('measuring_time'))
 				->where('measuring_point_id', $id)
-				->order_by('created_at', 'desc')
+				->order_by('measuring_time', 'desc')
 				->from_cache(false)
 				->get();
 
 			$measuring_months = array();
 			foreach ($measuring_created as $item)
 			{
-				$measuring_months[\Date::forge($item['created_at'])->format("%m/%Y")]
-					= 'Tháng '.\Date::forge($item['created_at'])->format("%m/%Y");
+				$measuring_months[\Date::forge($item['measuring_time'])->format("%m/%Y")]
+					= 'Tháng '.\Date::forge($item['measuring_time'])->format("%m/%Y");
 			}
 
 			$data['measuring_months'] = $measuring_months;
@@ -170,12 +170,12 @@ class Controller_Measuring_Values extends Controller_Base {
 			$measuring_values = \Model_Measuring_Value::query()
 				->where('measuring_point_id', $id)
 				->and_where_open()
-					->where(\DB::expr('MONTH(FROM_UNIXTIME(created_at))'), $array_temp[0])
+					->where(\DB::expr('MONTH(FROM_UNIXTIME(measuring_time))'), $array_temp[0])
 				->and_where_close()
 				->and_where_open()
-					->where(\DB::expr('YEAR(FROM_UNIXTIME(created_at))'), $array_temp[1])
+					->where(\DB::expr('YEAR(FROM_UNIXTIME(measuring_time))'), $array_temp[1])
 				->and_where_close()
-				->order_by('created_at', 'desc')
+				->order_by('measuring_time', 'desc')
 				->from_cache(false)
 				->get();
 
