@@ -10,6 +10,7 @@ class Model_Measuring_Value extends \Orm\Model
 		'value1',
 		'value2',
 		'value3',
+		'measuring_time',
 		'created_at',
 		'updated_at',
 		'deleted_at',
@@ -33,6 +34,8 @@ class Model_Measuring_Value extends \Orm\Model
 		$val->add_field('value1', 'Value1', 'required|valid_string[numeric,dots]');
 		$val->add_field('value2', 'Value2', 'required|valid_string[numeric,dots]');
 		$val->add_field('value3', 'Value3', 'required|valid_string[numeric,dots]');
+		$val->add_field('date', 'Measuring_date', 'required|valid_date');
+		$val->add_field('time', 'Measuring_time', 'required|valid_date');
 
 		return $val;
 	}

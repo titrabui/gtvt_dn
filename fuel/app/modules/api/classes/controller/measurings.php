@@ -52,7 +52,7 @@ class Controller_Measurings extends \Controller_Rest
 				if (isset($last_measuring['id']))
 				{
 					$current_day = new \DateTime("now");
-					$last_day = new \DateTime(\Date::forge($last_measuring['created_at'])->format("%m/%d/%Y"));
+					$last_day = new \DateTime(\Date::forge($last_measuring['measuring_time'])->format("%m/%d/%Y"));
 					$interval = $current_day->diff($last_day);
 
 					$total_time_surveying  = $interval->days + $last_measuring['total_time_surveying'];
@@ -66,6 +66,7 @@ class Controller_Measurings extends \Controller_Rest
 					'value1'               => \Input::post('value1'),
 					'value2'               => \Input::post('value2'),
 					'value3'               => \Input::post('value3'),
+					'measuring_time'       => strtotime(\Input::post('date').'T'.\Input::post('time')),
 				));
 
 				if ($measuring_value and $measuring_value->save() and $measuring_point->save())
