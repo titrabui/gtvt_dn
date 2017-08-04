@@ -94,21 +94,6 @@
 		</div>
 	</div>
 </div>
-<div class="row">
-	<div class="col-lg-12 col-md-6 box-layout">
-		<!-- LINE CHART -->
-		<div class="box box-primary box-solid">
-			<div class="box-header with-border">
-				<h3 class="box-title">Biểu Đồ Nhiệt Độ</h3>
-			</div>
-			<div class="box-body">
-				<canvas id="canvas"></canvas>
-			</div>
-			<!-- /.box-body -->
-		</div>
-		<!-- /.box -->
-	</div>
-</div>
 <!-- Modal -->
 <div class="modal modal-warning" id="measuringValueModal">
 	<div class="modal-dialog">
