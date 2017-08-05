@@ -43,6 +43,10 @@ class Model_User extends \Orm\Model
 				$val->add_field('username', 'username', 'required|max_length[50]');
 				$val->add_field('password', 'password', 'required|max_length[255]');
 				$val->add_field('email', 'email', 'required|valid_email|max_length[255]');
+				$val->add_field('group', 'group', 'valid_string[numeric]');
+				$val->add_field('fullname', 'fullname', 'max_length[256]');
+				$val->add_field('phone', 'phone', 'valid_string[numeric]');
+				$val->add_field('address', 'address', 'max_length[512]');
 				break;
 			case 'MasterModify': // Change administrator user
 				$val->add_callable('Validate_user');
@@ -87,6 +91,16 @@ class Model_User extends \Orm\Model
 				$val->set_message('oldpasscheck', \Constants::$error_message['bad_old_password']);
 				break;
 
+			case 'ApiUserModifyPass':
+				$val->add('old_password', 'old_password')
+					->add_rule('required_with', 'password')
+					->add_rule('max_length', 255);
+				$val->add('password', 'password')
+					->add_rule('required_with', 'old_password')
+					->add_rule('valid_string', array('alpha','numeric'))
+					->add_rule('match_value', \Input::post('password2'), true)
+					->add_rule('max_length', 255);
+				break;
 			default:
 				break;
 		}
