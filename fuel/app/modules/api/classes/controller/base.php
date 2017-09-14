@@ -84,7 +84,7 @@ class Controller_Base extends \Controller_Rest
 	{
 		return $this->response(array(
 			'status' => 'Success',
-			'data'  => $response_data
+			'data'  => array_values($response_data)
 		), 200);
 	}
 
